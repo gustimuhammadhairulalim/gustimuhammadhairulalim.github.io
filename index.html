@@ -1,519 +1,144 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gusti Muhammad Hairul Alim — Portfolio</title>
-<meta name="description" content="Portfolio Gusti Muhammad Hairul Alim, Mahasiswa D4 Teknologi Rekayasa Elektronika Politeknik Negeri Semarang">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{\n  --bg:#060a12;--bg2:#0c1220;--bg3:#0f1828;\n  --accent:#00c8ff;--accent2:#0066ff;--gold:#e8b84b;\n  --text:#dde6f5;--muted:#6b7fa3;--border:rgba(0,200,255,0.12);\n  --card:rgba(12,18,32,0.85);--glow:rgba(0,200,255,0.06);\n}
-html{scroll-behavior:smooth;font-family:'Outfit',sans-serif;background-color:var(--bg);color:var(--text);overflow-x:hidden}
+```css
+/* ========================= */
+/* PROJECT IMAGE */
+/* ========================= */
 
-/* ===== REQ 5: BACKGROUND SIRKUIT SEAMLESS UTK SECTION 1 SAMPAI 5 ===== */
-.circuit-bg {
-  position: fixed; /* Membuat background menetap saat di-scroll */
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.25; /* Transparansi agar teks tetap mudah dibaca */
+.proj-photo img,
+.tl-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  cursor:pointer;
+  transition:.3s;
 }
 
-/* NAVBAR */
-nav{position:fixed;top:0;left:0;width:100%;z-index:100;backdrop-filter:blur(12px);border-bottom:1px solid var(--border);background:rgba(6,10,18,0.7)}
-.nav-container{max-width:1200px;margin:0 auto;padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center}
-.logo{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.3rem;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:8px}
-.nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{color:var(--text);text-decoration:none;font-weight:500;transition:.3s;font-size:.95rem;position:relative;padding:0.3rem 0}
-.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--accent);transition:.3s}
-.nav-links a:hover{color:var(--accent)}
-.nav-links a:hover::after{width:100%}
-#hamburger{display:none;background:none;border:none;color:var(--text);font-size:1.6rem;cursor:pointer}
-
-/* COMMON SECTION STYLES */
-section{padding:100px 2rem 80px;max-width:1200px;margin:0 auto;position:relative;min-height:90vh;display:flex;flex-direction:column;justify-content:center}
-.section-title{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;margin-bottom:3.5rem;position:relative;display:inline-block;letter-spacing:-0.5px}
-.section-title span{color:var(--accent)}
-.section-title::after{content:'';position:absolute;bottom:-10px;left:0;width:60px;height:4px;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px}
-
-/* HERO SECTION */
-.hero-wrapper{display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;align-items:center;width:100%}
-.hero-info{display:flex;flex-direction:column;gap:1.5rem}
-.badge{background:rgba(0,200,255,0.08);border:1px solid var(--border);color:var(--accent);padding:0.5rem 1.2rem;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:0.85rem;width:fit-content;display:flex;align-items:center;gap:8px}
-.hero-info h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;line-height:1.1;letter-spacing:-1px}
-.hero-info h1 span{background:linear-gradient(135deg,var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero-info p{color:var(--muted);font-size:1.1rem;line-height:1.6;max-width:540px}
-
-/* REQ 1: KOTAK FOTO TAMPILAN AWAL */
-.hero-profile-display {
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  margin-top: 0.5rem;
-}
-.hero-profile-frame {
-  width: 75px; height: 75px;
-  border-radius: 50%;
-  border: 2px solid var(--accent);
-  padding: 3px;
-  background: var(--bg2);
-  overflow: hidden;
-  flex-shrink: 0;
-  box-shadow: 0 0 15px rgba(0,200,255,0.25);
-}
-.hero-profile-frame img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-.hero-profile-text h4 { font-size: 1.05rem; font-weight: 600; color: var(--text); }
-.hero-profile-text p { font-size: 0.85rem; color: var(--muted); }
-
-/* VISUAL & REQ 4: NAMETAG DRAGGABLE DENGAN ANIMASI JATOH */
-.hero-visual{display:flex;justify-content:center;align-items:flex-start;position:relative;height:550px}
-.lanyard-line{position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:4px;height:140px;background:linear-gradient(to bottom, var(--accent2), rgba(0,200,255,0.4));z-index:2;transform-origin:top}
-
-.draggable-nametag {
-  position: absolute;
-  top: 20px;
-  cursor: grab;
-  z-index: 5;
-  touch-action: none;
-  /* REQ 4: Efek dropIn animasi jatoh saat pertama masuk */
-  animation: dropIn 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-.draggable-nametag:active { cursor: grabbing; }
-
-@keyframes dropIn {
-  0% { transform: translateY(-600px) rotate(-20deg); opacity: 0; }
-  100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+.proj-photo:hover img,
+.tl-photo:hover img{
+  transform:scale(1.08);
 }
 
-.nametag-card {
-  width: 300px; height: 440px;
-  background: linear-gradient(145deg, rgba(15,24,40,0.95), rgba(6,10,18,0.98));
-  border: 1px solid rgba(0,200,255,0.25);
-  border-radius: 20px;
-  padding: 1.8rem;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 0 20px rgba(0,200,255,0.05);
-  display: flex; flex-direction: column; align-items: center; position: relative;
-  overflow: hidden; backdrop-filter: blur(10px);
-}
-.nametag-card::before {
-  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px;
-  background: linear-gradient(90deg, var(--accent), var(--gold));
-}
-.nametag-header { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-bottom: 1.5rem; width: 100% }
-.nametag-logo { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; color: var(--gold); letter-spacing: 2px; }
-.nametag-holder {
-  width: 130px; height: 130px; border-radius: 12px;
-  border: 2px solid var(--border); background: var(--bg);
-  margin-bottom: 1.2rem; overflow: hidden; position: relative;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-}
-.nametag-holder img { width: 100%; height: 100%; object-fit: cover; }
-.nametag-name { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 4px; text-align: center; color: #fff }
-.nametag-sub { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--accent); margin-bottom: 1.5rem; }
-.nametag-barcode { width: 100%; margin-top: auto; opacity: 0.7; filter: invert(1); height: 35px; object-fit: contain; }
 
-/* ABOUT SECTION */
-.about-grid{display:grid;grid-template-columns:1fr;gap:2.5rem}
-.about-box{background:var(--card);border:1px solid var(--border);padding:2.5rem;border-radius:20px;backdrop-filter:blur(10px)}
-.about-box p{color:var(--text);font-size:1.05rem;line-height:1.7;margin-bottom:1.5rem}
+/* ========================= */
+/* LIGHTBOX */
+/* ========================= */
 
-/* SKILLS SECTION */
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
-.skill-category{background:var(--card);border:1px solid var(--border);padding:2rem;border-radius:20px;backdrop-filter:blur(10px);transition:.3s}
-.skill-category:hover{border-color:rgba(0,200,255,0.3);transform:translateY(-5px)}
-.skill-category h3{font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;display:flex;align-items:center;gap:10px;color:var(--accent)}
-.skill-items{display:flex;flex-wrap:wrap;gap:0.8rem}
-.skill-badge{background:rgba(221,230,245,0.03);border:1px solid rgba(221,230,245,0.08);padding:0.5rem 1rem;border-radius:10px;font-size:0.9rem;display:flex;align-items:center;gap:8px;transition:.2s}
-.skill-badge:hover{background:rgba(0,200,255,0.08);border-color:var(--accent);color:#fff}
-.skill-badge i{color:var(--accent);font-size:1.1rem}
-
-/* TIMELINE (REQ 2: GAYA WADAH 1 SERTIFIKAT) */
-.timeline{position:relative;margin-left:1.5rem;border-left:2px solid var(--border);display:flex;flex-direction:column;gap:3rem}
-.timeline-item{position:relative;padding-left:2.5rem}
-.timeline-dot{position:absolute;left:-9px;top:4px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--accent);box-shadow:0 0 10px var(--accent)}
-.timeline-content{background:var(--card);border:1px solid var(--border);padding:2rem;border-radius:20px;backdrop-filter:blur(10px)}
-.time-tag{font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--gold);font-weight:600;margin-bottom:0.5rem;display:block}
-.timeline-content h3{font-size:1.3rem;font-weight:700;margin-bottom:0.3rem}
-.timeline-content h4{font-size:0.95rem;color:var(--muted);margin-bottom:1rem;font-weight:500}
-.timeline-content p{color:var(--muted);font-size:0.95rem;line-height:1.6;margin-bottom:1.5rem}
-
-.cert-preview-frame {
-  width: 100%; max-width: 400px;
-  border-radius: 12px; overflow: hidden;
-  border: 1px solid rgba(0,200,255,0.15);
-  background: rgba(0,0,0,0.2);
-  cursor: pointer; transition: 0.3s;
-  position: relative;
-}
-.cert-preview-frame::after {
-  content: '\eb11  Buka Sertifikat'; font-family: 'tabler-icons';
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(6,10,18,0.8); display: flex; align-items: center; justify-content: center;
-  color: var(--accent); font-weight: 500; opacity: 0; transition: 0.3s;
-}
-.cert-preview-frame:hover::after { opacity: 1; }
-.cert-preview-frame:hover { transform: scale(1.02); border-color: var(--accent); }
-.cert-preview-frame img { width: 100%; height: auto; display: block; }
-
-/* PROJECTS (REQ 3: MINI GALLERY BUKTI) */
-.project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:2.5rem}
-.project-card{background:var(--card);border:1px solid var(--border);border-radius:25px;overflow:hidden;backdrop-filter:blur(10px);display:flex;flex-direction:column;transition:.3s}
-.project-card:hover{border-color:rgba(0,200,255,0.3);transform:translateY(-5px)}
-.project-info{padding:2rem;display:flex;flex-direction:column;gap:1rem;flex-grow:1}
-.project-info h3{font-size:1.4rem;font-weight:700;letter-spacing:-0.3px}
-.project-info p{color:var(--muted);font-size:0.95rem;line-height:1.6}
-.project-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:1rem}
-.project-tags span{background:rgba(0,200,255,0.05);color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:0.75rem;padding:0.3rem 0.8rem;border-radius:6px;border:1px solid rgba(0,200,255,0.1)}
-
-.project-evidence-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  padding: 0 2rem 2rem;
-}
-.evidence-item {
-  aspect-ratio: 4/3; border-radius: 8px; overflow: hidden;
-  border: 1px solid rgba(221,230,245,0.1); background: rgba(0,0,0,0.3);
-  cursor: pointer; position: relative; transition: 0.2s;
-}
-.evidence-item:hover { border-color: var(--accent); transform: scale(1.05); }
-.evidence-item img { width: 100%; height: 100%; object-fit: cover; }
-
-/* CONTACT SECTION */
-.contact-wrapper{background:var(--card);border:1px solid var(--border);border-radius:25px;padding:3rem;backdrop-filter:blur(10px);display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
-.contact-info{display:flex;flex-direction:column;gap:1.5rem}
-.contact-info h3{font-size:1.8rem;font-weight:700}
-.contact-info p{line-height:1.6;color:var(--muted)}
-.contact-links{display:flex;flex-direction:column;gap:1.2rem}
-.contact-item{display:flex;align-items:center;gap:15px;color:var(--text);text-decoration:none;font-size:1.05rem;transition:.2s;padding:0.5rem;border-radius:12px;border:1px solid transparent}
-.contact-item:hover{background:rgba(0,200,255,0.04);border-color:var(--border);color:var(--accent)}
-.contact-item i{width:45px;height:45px;background:rgba(0,200,255,0.06);border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--accent)}
-
-/* LIGHTBOX MODAL */
-.lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(4,6,10,0.95);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.3s;backdrop-filter:blur(10px)}
-.lightbox.open{opacity:1;pointer-events:all}
-.lightbox-content{max-width:85%;max-height:85%;border-radius:12px;box-shadow:0 25px 50px rgba(0,0,0,0.5);border:1px solid rgba(221,230,245,0.1);transform:scale(0.95);transition:.3s}
-.lightbox.open .lightbox-content{transform:scale(1)}
-.lightbox-close{position:absolute;top:2rem;right:2rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;opacity:0.7;transition:.2s}
-.lightbox-close:hover{opacity:1;color:var(--accent)}
-
-/* SCROLL REVEAL */
-.reveal{opacity:0;transform:translateY(30px);transition:all 0.8s cubic-bezier(0.16, 1, 0.3, 1)}
-.reveal.visible{opacity:1;transform:translateY(0)}
-
-/* RESPONSIVE STYLES */
-@media (max-width: 992px){
-  .hero-wrapper{grid-template-columns:1fr;gap:3rem;text-align:center}
-  .hero-info{align-items:center}
-  .hero-profile-display{justify-content:center}
-  .hero-visual{height:480px}
-  .contact-wrapper{grid-template-columns:1fr;gap:2.5rem}
-}
-@media (max-width: 640px){
-  #hamburger{display:block}
-  .nav-links{position:fixed;top:73px;left:-100%;width:100%;height:calc(100vh - 73px);background:var(--bg);flex-direction:column;align-items:center;padding-top:3rem;transition:.4s ease;border-top:1px solid var(--border)}
-  .nav-links.open{left:0}
-  .project-evidence-gallery{grid-template-columns:repeat(3, 1fr);padding:0 1.2rem 1.5rem}
-}
-</style>
-</head>
-<body>
-
-<svg class="circuit-bg" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="circuitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00c8ff" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#0066ff" stop-opacity="0.1"/>
-    </linearGradient>
-    <animation id="pulse">
-      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite" />
-    </animation>
-  </defs>
-  <path d="M100,150 L300,150 L400,250 L400,500 L350,550 L150,550 L100,600 L100,800" fill="none" stroke="url(#circuitGrad)" stroke-width="1.5" />
-  <path d="M1300,100 L1150,100 L1050,200 L1050,550 L1150,650 L1300,650" fill="none" stroke="url(#circuitGrad)" stroke-width="1.5" />
-  <path d="M600,850 L700,750 L850,750 L900,800" fill="none" stroke="url(#circuitGrad)" stroke-width="1.5" />
-  <circle cx="100" cy="150" r="4" fill="#00c8ff" />
-  <circle cx="400" cy="250" r="3" fill="#e8b84b" />
-  <circle cx="1300" cy="100" r="4" fill="#00c8ff" />
-  <circle cx="1050" cy="550" r="3" fill="#e8b84b" />
-</svg>
-
-<nav>
-  <div class="nav-container">
-    <a href="#" class="logo"><i class="ti ti-cpu"></i> GUSTI.M</a>
-    <button id="hamburger"><i class="ti ti-menu-2"></i></button>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#hero">Beranda</a></li>
-      <li><a href="#about">Tentang</a></li>
-      <li><a href="#skills">Keahlian</a></li>
-      <li><a href="#experience">Pengalaman</a></li>
-      <li><a href="#projects">Proyek</a></li>
-      <li><a href="#contact">Kontak</a></li>
-    </ul>
-  </div>
-</nav>
-
-<section id="hero">
-  <div class="hero-wrapper">
-    <div class="hero-info">
-      <div class="badge"><i class="ti ti-bolt"></i> Elektronika Terintegrasi</div>
-      <h1>Hai, Saya <span>Gusti Muhammad</span></h1>
-      <p>Mahasiswa D4 Teknologi Rekayasa Elektronika di Politeknik Negeri Semarang. Fokus pada pengembangan sistem tertanam, otomasi sirkuit, dan kendali cerdas.</p>
-      
-      <div class="hero-profile-display">
-        <div class="hero-profile-frame">
-          <img src="foto-tampilan-awal.jpg" alt="Gusti Muhammad Profile">
-        </div>
-        <div class="hero-profile-text">
-          <h4>Gusti Muhammad Hairul Alim</h4>
-          <p>D4 Teknologi Rekayasa Elektronika — POLINES</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="hero-visual">
-      <div class="lanyard-line" id="lanyardNode"></div>
-      <div class="draggable-nametag" id="dragTag">
-        <div class="nametag-card" id="tiltTag">
-          <div class="nametag-header">
-            <div class="nametag-logo"><i class="ti ti-school"></i> POLINES</div>
-          </div>
-          <div class="nametag-holder">
-            <img src="foto-idcard.jpg" alt="ID Photo">
-          </div>
-          <div class="nametag-name">Gusti Muhammad H.A.</div>
-          <div class="nametag-sub">STUDENT ID • ELECTRONICS</div>
-          <img src="https://cdn.jsdelivr.net/jsbarcode/3.6.0/barcodes/JsBarcode.all.min.js" alt="Barcode" class="nametag-barcode" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 30\'><rect width=\'100\' height=\'30\' fill=\'white\'/><line x1=\'10\' y1=\'5\' x2=\'10\' y2=\'25\' stroke=\'black\' stroke-width=\'2\'/><line x1=\'15\' y1=\'5\' x2=\'15\' y2=\'25\' stroke=\'black\' stroke-width=\'1\'/><line x1=\'20\' y1=\'5\' x2=\'20\' y2=\'25\' stroke=\'black\' stroke-width=\'3\'/><line x1=\'30\' y1=\'5\' x2=\'30\' y2=\'25\' stroke=\'black\' stroke-width=\'1\'/><line x1=\'40\' y1=\'5\' x2=\'40\' y2=\'25\' stroke=\'black\' stroke-width=\'2\'/><line x1=\'50\' y1=\'5\' x2=\'50\' y2=\'25\' stroke=\'black\' stroke-width=\'4\'/></svg>'">
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="about" class="reveal">
-  <h2 class="section-title">Tentang <span>Saya</span></h2>
-  <div class="about-grid">
-    <div class="about-box">
-      <p>Saya adalah seorang praktisi tingkat akademi di bidang rekayasa elektronika yang memiliki ketertarikan tinggi terhadap Internet of Things (IoT), PLC, integrasi sistem kelistrikan industri, dan pemrograman mikrokontroler. Berbekal pembelajaran intensif di Politeknik Negeri Semarang, saya selalu berorientasi mendesain solusi hardware dan software yang efisien, aman, dan aplikatif.</p>
-    </div>
-  </div>
-</section>
-
-<section id="skills" class="reveal">
-  <h2 class="section-title">Keahlian <span>Teknis</span></h2>
-  <div class="skills-grid">
-    <div class="skill-category">
-      <h3><i class="ti ti-circuit-board"></i> Hardware & EDA</h3>
-      <div class="skill-items">
-        <span class="skill-badge"><i class="ti ti-layers-difference"></i> Proteus</span>
-        <span class="skill-badge"><i class="ti ti-bolt"></i> EPLAN</span>
-        <span class="skill-badge"><i class="ti ti-box"></i> AutoCAD</span>
-        <span class="skill-badge"><i class="ti ti-cpu"></i> Altium Designer</span>
-      </div>
-    </div>
-    <div class="skill-category">
-      <h3><i class="ti ti-binary"></i> Control & Software</h3>
-      <div class="skill-items">
-        <span class="skill-badge"><i class="ti ti-settings-automation"></i> PLC / SCADA</span>
-        <span class="skill-badge"><i class="ti ti-terminal-2"></i> Arduino IDE</span>
-        <span class="skill-badge"><i class="ti ti-function"></i> MATLAB</span>
-        <span class="skill-badge"><i class="ti ti-brand-python"></i> Python</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="experience" class="reveal">
-  <h2 class="section-title">Riwayat <span>Pengalaman</span></h2>
-  <div class="timeline">
-    
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <span class="time-tag">2024 - 2025</span>
-        <h3>Fungsionaris Badan Eksekutif Mahasiswa (BEM)</h3>
-        <h4>Politeknik Negeri Semarang</h4>
-        <p>Bertanggung jawab dalam pengelolaan program kerja skala kampus, manajemen tim, serta mengoordinasikan aspek teknis operasional dalam kepengurusan.</p>
-        
-        <div class="cert-preview-frame" onclick="openLightbox(this.querySelector('img').src)">
-          <img src="sertifikat-bem.jpg" alt="Sertifikat Hasil Pengalaman BEM">
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section id="projects" class="reveal">
-  <h2 class="section-title">Karya & <span>Proyek</span></h2>
-  <div class="project-grid">
-    
-    <div class="project-card">
-      <div class="project-info">
-        <h3>Sistem Kontrol & Monitoring Magang Industri</h3>
-        <p>Perancangan modul otomasi menggunakan kontrol terprogram untuk optimasi sistem distribusi daya listrik di lini produksi.</p>
-        <div class="project-tags">
-          <span>PLC</span><span>SCADA</span><span>EPLAN</span>
-        </div>
-      </div>
-      
-      <div class="project-evidence-gallery">
-        <div class="evidence-item" onclick="openLightbox(this.querySelector('img').src)">
-          <img src="foto-magang-1.jpg" alt="Bukti Proyek Magang 1">
-        </div>
-        <div class="evidence-item" onclick="openLightbox(this.querySelector('img').src)">
-          <img src="foto-magang-2.jpg" alt="Bukti Proyek Magang 2">
-        </div>
-        <div class="evidence-item" onclick="openLightbox(this.querySelector('img').src)">
-          <img src="foto-magang-3.jpg" alt="Bukti Proyek Magang 3">
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section id="contact" class="reveal">
-  <h2 class="section-title">Hubungi <span>Saya</span></h2>
-  <div class="contact-wrapper">
-    <div class="contact-info">
-      <h3>Mari Berkolaborasi!</h3>
-      <p>Jika Anda tertarik dengan keahlian saya atau ingin mendiskusikan peluang proyek di bidang teknik elektronika dan otomasi sirkuit, silakan hubungi saluran berikut:</p>
-    </div>
-    <div class="contact-links">
-      <a href="mailto:email-kamu@domain.com" class="contact-item">
-        <i class="ti ti-mail"></i>
-        <span>email-kamu@domain.com</span>
-      </a>
-      <a href="https://linkedin.com/in/username-kamu" target="_blank" class="contact-item">
-        <i class="ti ti-brand-linkedin"></i>
-        <span>LinkedIn Profile</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<div class="lightbox" id="lightbox">
-  <button class="lightbox-close" onclick="closeLightbox()"><i class="ti ti-x"></i></button>
-  <img src="" alt="Enlarged Preview" class="lightbox-content" id="lightboxImg">
-</div>
-
-<script>
-// REQ 4: MEMAKSA INSTAN HALAMAN KE ATAS SAAT MASUK/REFRESH AGAR ANIMASI JATOH TERLIHAT
-if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'manual';
-}
-window.scrollTo(0, 0);
-window.addEventListener('load', () => {
-  setTimeout(() => { window.scrollTo(0, 0); }, 10);
-});
-
-// DRAGGABLE LOGIC FOR NAMETAG
-const draggable = document.getElementById('dragTag');
-const nametag = document.getElementById('tiltTag');
-const lanyard = document.getElementById('lanyardNode');
-
-let isDragging = false;
-let currentX = 0, currentY = 0, initialX = 0, initialY = 0;
-let xOffset = 0, yOffset = 0;
-
-function updateLanyardLine() {
-  if(!lanyard || !draggable) return;
-  const lanyardRect = lanyard.getBoundingClientRect();
-  const tagRect = draggable.getBoundingClientRect();
-  const startX = lanyardRect.left + (lanyardRect.width / 2);
-  const startY = lanyardRect.top;
-  const endX = tagRect.left + (tagRect.width / 2);
-  const endY = tagRect.top + 20;
-  const distance = Math.hypot(endX - startX, endY - startY);
-  const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
-  lanyard.style.height = `${distance}px`;
-  lanyard.style.transform = `translateX(-50%) rotate(${angle - 90}deg)`;
+.lightbox{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:rgba(0,0,0,.9);
+  justify-content:center;
+  align-items:center;
 }
 
-function onPointerDown(e) {
-  if (e.type === "touchstart") {
-    initialX = e.touches[0].clientX - xOffset;
-    initialY = e.touches[0].clientY - yOffset;
-  } else {
-    initialX = e.clientX - xOffset;
-    initialY = e.clientY - yOffset;
+.lightbox.open{
+  display:flex;
+}
+
+.lightbox img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:12px;
+  border:1px solid rgba(0,200,255,.3);
+}
+
+.lightbox-close{
+  position:absolute;
+  top:30px;
+  right:30px;
+  background:none;
+  border:none;
+  color:white;
+  font-size:40px;
+  cursor:pointer;
+}
+
+
+/* ========================= */
+/* NAMETAG FALL ANIMATION */
+/* ========================= */
+
+.nametag-wrap{
+  animation:
+  dropIn 1s cubic-bezier(
+  0.22,
+  1,
+  0.36,
+  1
+  );
+}
+
+@keyframes dropIn{
+
+  0%{
+    opacity:0;
+    transform:
+    translateY(-200px)
+    rotate(-12deg);
   }
-  isDragging = true;
-  nametag.style.transition = 'none';
-}
 
-function onPointerMove(e) {
-  if (!isDragging) {
-    const rect = draggable.getBoundingClientRect();
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    const x = clientX - rect.left, y = clientY - rect.top;
-    const xc = rect.width / 2, yc = rect.height / 2;
-    nametag.style.transform = `perspective(600px) rotateX(${(yc - y) / 10}deg) rotateY(${(x - xc) / 10}deg)`;
-    updateLanyardLine();
-    return;
+  70%{
+    opacity:1;
+    transform:
+    translateY(20px)
+    rotate(4deg);
   }
-  e.preventDefault();
-  if (e.type === "touchmove") {
-    currentX = e.touches[0].clientX - initialX;
-    currentY = e.touches[0].clientY - initialY;
-  } else {
-    currentX = e.clientX - initialX;
-    currentY = e.clientY - initialY;
+
+  100%{
+    transform:
+    translateY(0)
+    rotate(0deg);
   }
-  xOffset = currentX; yOffset = currentY;
-  xOffset = Math.max(-200, Math.min(200, xOffset));
-  yOffset = Math.max(-50, Math.min(250, yOffset));
-  draggable.style.transform = `translate3d(${xOffset}px, ${yOffset}px, 0)`;
-  nametag.style.transform = `perspective(600px) rotateY(${xOffset * 0.1}deg) rotateX(${-yOffset * 0.05}deg)`;
-  updateLanyardLine();
 }
 
-function onPointerUp() {
-  if (!isDragging) return;
-  isDragging = false;
-  nametag.style.transition = 'transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.5)';
-  draggable.style.transition = 'transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.5)';
-  xOffset = 0; yOffset = 0;
-  draggable.style.transform = `translate3d(0, 0, 0)`;
-  nametag.style.transform = `perspective(600px) rotateX(0deg) rotateY(0deg)`;
-  setTimeout(() => { draggable.style.transition = 'none'; updateLanyardLine(); }, 600);
+
+/* ========================= */
+/* CYBER BACKGROUND */
+/* ========================= */
+
+body::before{
+
+  content:'';
+
+  position:fixed;
+  inset:0;
+
+  background:
+  radial-gradient(
+    circle at top left,
+    rgba(0,200,255,.08),
+    transparent 30%
+  ),
+
+  radial-gradient(
+    circle at bottom right,
+    rgba(0,100,255,.08),
+    transparent 30%
+  );
+
+  pointer-events:none;
+  z-index:-1;
 }
 
-draggable.addEventListener('mousedown', onPointerDown);
-window.addEventListener('mousemove', onPointerMove);
-window.addEventListener('mouseup', onPointerUp);
-draggable.addEventListener('touchstart', onPointerDown, {passive:false});
-window.addEventListener('touchmove', onPointerMove, {passive:false});
-window.addEventListener('touchend', onPointerUp);
-draggable.addEventListener('mouseleave', () => {
-  if (isDragging) return;
-  nametag.style.transition = 'transform .5s ease';
-  nametag.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg)';
-});
 
-// LIGHTBOX FUNCTION
-function openLightbox(src){if(!src)return;document.getElementById('lightboxImg').src=src;document.getElementById('lightbox').classList.add('open');}
-function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
-document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this || e.target.classList.contains('lightbox-close') || e.target.closest('.lightbox-close')) closeLightbox();});
+/* ========================= */
+/* GLOW EFFECT */
+/* ========================= */
 
-// SCROLL REVEAL (OBSERVER)
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+.proj-card,
+.nametag,
+.about-card,
+.contact-item{
 
-// HAMBURGER RESPONSE
-document.getElementById('hamburger').addEventListener('click',()=>{document.getElementById('navLinks').classList.toggle('open');});
-document.querySelectorAll('.nav-links a').forEach(a=>{a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open'));});
+  box-shadow:
+  0 0 20px rgba(0,200,255,.04);
+}
 
-// Loop interval tipis biar lanyard ngetrack posisi awal dengan pas
-setInterval(updateLanyardLine, 100);
-</script>
-</body>
-</html>
+.proj-card:hover,
+.contact-item:hover{
+
+  box-shadow:
+  0 0 30px rgba(0,200,255,.15);
+}
+```
