@@ -1,144 +1,503 @@
-```css
-/* ========================= */
-/* PROJECT IMAGE */
-/* ========================= */
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gusti Muhammad Hairul Alim — Portfolio</title>
+<meta name="description" content="Portfolio Gusti Muhammad Hairul Alim, Mahasiswa D4 Teknologi Rekayasa Elektronika Politeknik Negeri Semarang">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#0d0f14;
+    --bg2:#131720;
+    --bg3:#1a1f2e;
+    --accent:#00e5a0;
+    --text:#e8ecf4;
+    --muted:#7a8299;
+    --border:#252b3b;
+    --card:#161b27;
+  }
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;line-height:1.6;overflow-x:hidden}
 
-.proj-photo img,
-.tl-photo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  cursor:pointer;
-  transition:.3s;
-}
-
-.proj-photo:hover img,
-.tl-photo:hover img{
-  transform:scale(1.08);
-}
-
-
-/* ========================= */
-/* LIGHTBOX */
-/* ========================= */
-
-.lightbox{
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:9999;
-  background:rgba(0,0,0,.9);
-  justify-content:center;
-  align-items:center;
-}
-
-.lightbox.open{
-  display:flex;
-}
-
-.lightbox img{
-  max-width:90%;
-  max-height:90%;
-  border-radius:12px;
-  border:1px solid rgba(0,200,255,.3);
-}
-
-.lightbox-close{
-  position:absolute;
-  top:30px;
-  right:30px;
-  background:none;
-  border:none;
-  color:white;
-  font-size:40px;
-  cursor:pointer;
-}
-
-
-/* ========================= */
-/* NAMETAG FALL ANIMATION */
-/* ========================= */
-
-.nametag-wrap{
-  animation:
-  dropIn 1s cubic-bezier(
-  0.22,
-  1,
-  0.36,
-  1
-  );
-}
-
-@keyframes dropIn{
-
-  0%{
-    opacity:0;
-    transform:
-    translateY(-200px)
-    rotate(-12deg);
+  /* ====== NAV ====== */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(13,15,20,0.9);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+    padding:1rem 2rem;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .nav-logo{font-family:'Space Mono',monospace;font-size:13px;color:var(--accent);letter-spacing:1px}
+  .nav-links{display:flex;gap:1.5rem}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-family:'Space Mono',monospace;transition:color .2s}
+  .nav-links a:hover{color:var(--accent)}
+  .hamburger{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer}
+  @media(max-width:600px){
+    .nav-links{display:none;flex-direction:column;position:absolute;top:60px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--border);padding:1rem 2rem;gap:1rem}
+    .nav-links.open{display:flex}
+    .hamburger{display:block}
   }
 
-  70%{
-    opacity:1;
-    transform:
-    translateY(20px)
-    rotate(4deg);
+  /* ====== SECTIONS ====== */
+  section{padding:5rem 2rem;max-width:900px;margin:0 auto}
+
+  /* ====== HERO ====== */
+  #hero{
+    min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+    padding-top:6rem;position:relative;
+  }
+  .hero-grid{
+    position:absolute;top:0;left:0;right:0;bottom:0;
+    background-image:linear-gradient(var(--border) 1px,transparent 1px),
+                     linear-gradient(90deg,var(--border) 1px,transparent 1px);
+    background-size:60px 60px;opacity:0.3;pointer-events:none;z-index:-1;
+  }
+  .hero-glow{
+    position:absolute;width:350px;height:350px;
+    background:radial-gradient(circle,rgba(0,229,160,0.07),transparent 70%);
+    top:30%;right:5%;pointer-events:none;z-index:-1;
+  }
+  .hero-tag{
+    font-family:'Space Mono',monospace;font-size:12px;color:var(--accent);
+    letter-spacing:3px;margin-bottom:1rem;
+    opacity:0;animation:fadeUp .6s .2s forwards;
+  }
+  .hero-name{
+    font-size:clamp(2.2rem,6vw,4.5rem);font-weight:800;line-height:1.05;margin-bottom:1rem;
+    opacity:0;animation:fadeUp .6s .4s forwards;
+  }
+  .hero-name span{color:var(--accent)}
+  .hero-sub{
+    font-size:1rem;color:var(--muted);max-width:520px;
+    opacity:0;animation:fadeUp .6s .6s forwards;margin-bottom:2rem;
+  }
+  .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:fadeUp .6s .8s forwards}
+  .btn-primary{
+    background:var(--accent);color:#0d0f14;padding:.75rem 1.5rem;
+    border-radius:6px;text-decoration:none;font-weight:700;font-size:14px;
+    transition:opacity .2s;display:inline-block;
+  }
+  .btn-primary:hover{opacity:.85}
+  .btn-outline{
+    border:1px solid var(--border);color:var(--text);padding:.75rem 1.5rem;
+    border-radius:6px;text-decoration:none;font-size:14px;
+    transition:border-color .2s;display:inline-block;
+  }
+  .btn-outline:hover{border-color:var(--accent)}
+
+  /* ====== SECTION HEADERS ====== */
+  .sec-label{font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:3px;margin-bottom:.4rem}
+  .sec-title{font-size:2rem;font-weight:800;margin-bottom:2.5rem;position:relative}
+  .sec-title::after{content:'';display:block;width:40px;height:3px;background:var(--accent);margin-top:.5rem;border-radius:2px}
+
+  /* ====== ABOUT ====== */
+  .about-intro{color:var(--muted);font-size:.97rem;line-height:1.8;margin-bottom:2rem}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  @media(max-width:600px){.about-grid{grid-template-columns:1fr}}
+  .about-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.25rem}
+  .about-card h3{font-size:.75rem;font-family:'Space Mono',monospace;color:var(--accent);margin-bottom:.5rem;letter-spacing:1px}
+  .about-card p{color:var(--muted);font-size:.9rem;line-height:1.7}
+  .about-card strong{color:var(--text)}
+
+  /* ====== SKILLS ====== */
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1rem}
+  .skill-card{
+    background:var(--card);border:1px solid var(--border);border-radius:10px;
+    padding:1.25rem;transition:border-color .2s,transform .2s;
+  }
+  .skill-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+  .skill-icon{font-size:24px;color:var(--accent);margin-bottom:.6rem}
+  .skill-name{font-weight:700;font-size:.95rem;margin-bottom:.2rem}
+  .skill-desc{font-size:.78rem;color:var(--muted);line-height:1.5}
+  .skill-bar{height:3px;background:var(--border);border-radius:2px;margin-top:.75rem;overflow:hidden}
+  .skill-fill{height:100%;background:var(--accent);border-radius:2px;width:0%;transition:width 1.2s ease}
+
+  /* ====== TIMELINE ====== */
+  .timeline{position:relative;padding-left:2rem}
+  .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--border)}
+  .tl-item{position:relative;margin-bottom:2.5rem}
+  .tl-dot{
+    position:absolute;left:-2.35rem;top:.4rem;
+    width:12px;height:12px;border-radius:50%;
+    background:var(--accent);border:2px solid var(--bg);
+  }
+  .tl-date{font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:.2rem;letter-spacing:1px}
+  .tl-title{font-weight:700;font-size:1.05rem;margin-bottom:.15rem}
+  .tl-place{font-size:.83rem;color:var(--muted);margin-bottom:.4rem}
+  .tl-desc{font-size:.9rem;color:var(--muted);line-height:1.7}
+
+  /* ====== PROJECTS ====== */
+  .proj-grid{display:grid;gap:1.25rem}
+  .proj-card{
+    background:var(--card);border:1px solid var(--border);border-radius:12px;
+    padding:1.5rem;transition:border-color .2s;
+  }
+  .proj-card:hover{border-color:var(--accent)}
+  .proj-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.75rem}
+  .proj-title{font-weight:700;font-size:1.05rem}
+  .proj-badge{
+    background:rgba(0,229,160,.1);border:1px solid rgba(0,229,160,.3);
+    color:var(--accent);font-size:10px;padding:.2rem .6rem;border-radius:20px;
+    font-family:'Space Mono',monospace;white-space:nowrap;flex-shrink:0;
+  }
+  .proj-desc{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:1rem}
+  .proj-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+  .tag{
+    background:var(--bg3);border:1px solid var(--border);color:var(--muted);
+    font-size:10px;padding:.2rem .55rem;border-radius:4px;font-family:'Space Mono',monospace;
   }
 
-  100%{
-    transform:
-    translateY(0)
-    rotate(0deg);
+  /* ====== CONTACT ====== */
+  .contact-intro{color:var(--muted);font-size:.95rem;margin-bottom:2rem}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  @media(max-width:600px){.contact-grid{grid-template-columns:1fr}}
+  .contact-item{
+    background:var(--card);border:1px solid var(--border);border-radius:10px;
+    padding:1.25rem;display:flex;align-items:center;gap:1rem;
+    text-decoration:none;transition:border-color .2s;
   }
-}
+  .contact-item:hover{border-color:var(--accent)}
+  .contact-icon{
+    width:40px;height:40px;flex-shrink:0;
+    background:rgba(0,229,160,.1);border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px;color:var(--accent);
+  }
+  .contact-label{font-size:.7rem;color:var(--muted);font-family:'Space Mono',monospace;letter-spacing:1px;margin-bottom:.15rem}
+  .contact-val{font-size:.9rem;font-weight:600;color:var(--text)}
 
+  /* ====== DIVIDER ====== */
+  .divider{height:1px;background:var(--border);max-width:900px;margin:0 auto}
 
-/* ========================= */
-/* CYBER BACKGROUND */
-/* ========================= */
+  /* ====== FOOTER ====== */
+  footer{
+    text-align:center;padding:2rem;
+    font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);
+    border-top:1px solid var(--border);
+  }
+  footer p+p{margin-top:.4rem}
 
-body::before{
+  /* ====== ANIMATIONS ====== */
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
 
-  content:'';
+<!-- ====== NAV ====== -->
+<nav>
+  <div class="nav-logo">GMHA.PORTFOLIO</div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+  <div class="nav-links" id="navLinks">
+    <a href="#about">Profil</a>
+    <a href="#skills">Skill</a>
+    <a href="#experience">Pengalaman</a>
+    <a href="#projects">Proyek</a>
+    <a href="#contact">Kontak</a>
+  </div>
+</nav>
 
-  position:fixed;
-  inset:0;
+<!-- ====== HERO ====== -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-tag">// D4 Teknologi Rekayasa Elektronika · Politeknik Negeri Semarang</div>
+  <h1 class="hero-name">Gusti Muhammad<br><span>Hairul Alim</span></h1>
+  <p class="hero-sub">
+    Mahasiswa D4 Teknologi Rekayasa Elektronika dengan keahlian di bidang pembacaan wiring diagram, 
+   wiring panel kontrol, dan dasar sistem otomasi industri.
+  </p>
+  <div class="hero-btns">
+    <a href="#projects" class="btn-primary">Lihat Proyek</a>
+    <a href="#contact" class="btn-outline">Hubungi Saya</a>
+  </div>
+</section>
 
-  background:
-  radial-gradient(
-    circle at top left,
-    rgba(0,200,255,.08),
-    transparent 30%
-  ),
+<div class="divider"></div>
 
-  radial-gradient(
-    circle at bottom right,
-    rgba(0,100,255,.08),
-    transparent 30%
-  );
+<!-- ====== ABOUT ====== -->
+<section id="about">
+  <div class="reveal">
+    <div class="sec-label">// 01. Tentang</div>
+    <h2 class="sec-title">Profil Saya</h2>
+    <p class="about-intro">
+      Saya merupakan mahasiswa Semester 6 Program Studi Teknologi Rekayasa Elektronika, Jurusan Teknik Elektro di Politeknik Negeri Semarang, 
+      dengan latar belakang pendidikan Sekolah Menengah Kejuruan pada Jurusan Teknik Jaringan Tenaga Listrik di SMKN 2 Pangkalan Bun. 
+      Memiliki minat dan fokus pada bidang otomasi industri, sistem kontrol, instrumentasi, serta integrasi perangkat keras dan perangkat 
+      lunak dalam sistem elektronika terapan. Saya lebih berorientasi pada pembelajaran berbasis praktik (hands-on) dan pengembangan sistem 
+      secara langsung di lapangan, khususnya dalam proses perancangan, perakitan, pengawatan, hingga troubleshooting dalam sebuah sistem 
+      elektronika dan otomasi. Selain itu, saya juga memiliki pengalaman dalam pengembangan proyek berbasis mikrokontroler dan IoT menggunakan 
+      Arduino, ESP8266, serta perangkat otomasi lainnya. Saya memiliki ketertarikan untuk terus mengembangkan kompetensi di bidang maintenance, 
+      automation system, industrial control, dan teknologi industri berbasis digital. Saat ini sedang mengerjakan Tugas Akhir berupa sistem 
+      sorting otomatis berbasis YOLOv8 dan PLC yang menggabungkan teknologi computer vision, kontrol industri, sensor, dan otomasi untuk proses
+      identifikasi dan pemisahan objek secara otomatis.
+     
+    </p>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>// PENDIDIKAN</h3>
+        <p><strong>D4 Teknologi Rekayasa Elektronika</strong><br>Politeknik Negeri Semarang<br>2023 – 2027 </p>
+      </div>
+      <div class="about-card">
+        <h3>// ASAL</h3>
+        <p><strong>Pangkalan Bun, Kalimantan Tengah</strong><br>Saat ini berdomisili di Semarang sebagai mahasiswa aktif.</p>
+      </div>
+      <div class="about-card">
+        <h3>// Organisasi</h3>
+        <p>BEM Polines (Staf Muda), Liaison Officer Pengembangan Spiritual Mahasiswa (PESIMA),<br>Liaison Officer Vocatech Edufair 2026, </p>
+      </div>
+      <div class="about-card">
+        <h3>// MINAT</h3>
+        <p>Sistem otomasi industri, Operation&Maintenance , dan instalasi listrik Industri .</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  pointer-events:none;
-  z-index:-1;
-}
+<div class="divider"></div>
 
+<!-- ====== SKILLS ====== -->
+<section id="skills">
+  <div class="reveal">
+    <div class="sec-label">// 02. Keahlian</div>
+    <h2 class="sec-title">Skill & Kompetensi</h2>
+    <div class="skills-grid" id="skillsGrid"></div>
+  </div>
+</section>
 
-/* ========================= */
-/* GLOW EFFECT */
-/* ========================= */
+<div class="divider"></div>
 
-.proj-card,
-.nametag,
-.about-card,
-.contact-item{
+<!-- ====== EXPERIENCE ====== -->
+<section id="experience">
+  <div class="reveal">
+    <div class="sec-label">// 03. Pengalaman</div>
+    <h2 class="sec-title">Riwayat Pengalaman</h2>
+    <div class="timeline">
 
-  box-shadow:
-  0 0 20px rgba(0,200,255,.04);
-}
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Juli 2022 - September 2022 MAGANG SMK </div>
+        <div class="tl-title">Teknisi Listrik — PT Karya Mitra Sejahtera</div>
+        <div class="tl-place"></div>
+        <div class="tl-desc">
+          Melakukan instalasi kelistrikan Rumah, pemasangan KWH meter, dan wiring listrik 1 fase.
+          Pengalaman langsung di lapangan dengan standar instalasi PLN.
+        </div>
+      </div>
 
-.proj-card:hover,
-.contact-item:hover{
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">2026 — Volunteer</div>
+        <div class="tl-title">Liaison Officer — Vocatech Edufair 2026</div>
+        <div class="tl-place">Politeknik Negeri Semarang</div>
+        <div class="tl-desc">
+          Bertugas sebagai penghubung antar pihak dalam acara edukasi dan vokasi bertaraf nasional
+          yang diselenggarakan oleh kampus.
+        </div>
+      </div>
 
-  box-shadow:
-  0 0 30px rgba(0,200,255,.15);
-}
-```
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">November 2024 - Mei 2025 ORGANISASI</div>
+        <div class="tl-title">Staf Muda Kementrian Agama — Badan Eksekutif Mahasiswa</div>
+        <div class="tl-place">Politeknik Negeri Semarang</div>
+        <div class="tl-desc">
+          Berpartisipasi aktif dalam program kerja kementerian agama di lingkungan kampus dan
+          Membantu koordinasi kegiatan keagamaan dan sosial mahasiswa
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Juni 2024 - September 2024 Volunteer</div>
+        <div class="tl-title">Liaison Officer Pengembangan Spiritual Mahasiswa Baru</div>
+        <div class="tl-place">Politeknik Negeri Semarang</div>
+        <div class="tl-desc">
+          Bertugas sebagai pendamping peserta dalam kegiatan pengembangan spiritual mahasiswa baru
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ====== PROJECTS ====== -->
+<section id="projects">
+  <div class="reveal">
+    <div class="sec-label">// 04. Proyek</div>
+    <h2 class="sec-title">Karya & Proyek</h2>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-header">
+          <div class="proj-title">Sistem Sorting Otomatis Berbasis YOLOv8 & PLC</div>
+          <div class="proj-badge">TUGAS AKHIR</div>
+        </div>
+        <p class="proj-desc">
+          Sistem penyortiran objek geometri otomatis yang mengintegrasikan computer vision (YOLOv8) dengan PLC
+          untuk klasifikasi bentuk (lingkaran, segitiga, persegi) sekaligus deteksi cacat seperti bentuk tidak
+          sempurna atau geometri yang hilang. Novelti utama: kemampuan deteksi defect yang belum ditemukan
+          pada penelitian sebelumnya.
+        </p>
+        <div class="proj-tags">
+          <span class="tag">YOLOv8</span>
+          <span class="tag">PLC</span>
+          <span class="tag">Computer Vision</span>
+          <span class="tag">Defect Detection</span>
+          <span class="tag">Otomasi Industri</span>
+          <span class="tag">Python</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-header">
+          <div class="proj-title">Instalasi Kelistrikan Residensial</div>
+          <div class="proj-badge">MAGANG</div>
+        </div>
+        <p class="proj-desc">
+          Proyek instalasi kelistrikan hunian bersama PT Karya Mitra Sejahtera, meliputi wiring distribusi daya,
+          pemasangan panel listrik, dan instalasi KWH meter sesuai standar PLN. Hands-on di berbagai titik
+          instalasi riil.
+        </p>
+        <div class="proj-tags">
+          <span class="tag">Instalasi Listrik</span>
+          <span class="tag">KWH Meter</span>
+          <span class="tag">Panel Listrik</span>
+          <span class="tag">Standar PLN</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-header">
+          <div class="proj-title">Kendali Motor 3 Fase dengan VFD</div>
+          <div class="proj-badge">LAB KAMPUS</div>
+        </div>
+        <p class="proj-desc">
+          Rangkaian praktikum pengendalian motor 3 fase menggunakan Variable Frequency Drive (VFD) untuk
+          pengaturan kecepatan, serta implementasi rangkaian kontaktor dan relay dalam skenario kontrol otomatis.
+        </p>
+        <div class="proj-tags">
+          <span class="tag">Motor 3 Fase</span>
+          <span class="tag">VFD</span>
+          <span class="tag">Kontaktor</span>
+          <span class="tag">Relay</span>
+          <span class="tag">PLC</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ====== CONTACT ====== -->
+<section id="contact">
+  <div class="reveal">
+    <div class="sec-label">// 05. Kontak</div>
+    <h2 class="sec-title">Hubungi Saya</h2>
+    <p class="contact-intro">
+      Terbuka untuk peluang magang, kolaborasi proyek, atau sekadar diskusi seputar dunia elektro dan otomasi industri.
+    </p>
+    <div class="contact-grid">
+      <a href="mailto:gustiirul14@gmail.com" class="contact-item">
+        <div class="contact-icon"><i class="ti ti-mail" aria-hidden="true"></i></div>
+        <div>
+          <div class="contact-label">// EMAIL</div>
+          <div class="contact-val">gustiirul14@gmail.com</div>
+        </div>
+      </a>
+      <a href="https://wa.me/6282256913282" target="_blank" rel="noopener" class="contact-item">
+        <div class="contact-icon"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i></div>
+        <div>
+          <div class="contact-label">// WHATSAPP</div>
+          <div class="contact-val">0822-5691-3282</div>
+        </div>
+      </a>
+      <div class="contact-item">
+        <div class="contact-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
+        <div>
+          <div class="contact-label">// LOKASI</div>
+          <div class="contact-val">Semarang, Jawa Tengah</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><i class="ti ti-school" aria-hidden="true"></i></div>
+        <div>
+          <div class="contact-label">// KAMPUS</div>
+          <div class="contact-val">Politeknik Negeri Semarang</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <p>© 2025 Gusti Muhammad Hairul Alim · D4 Teknologi Rekayasa Elektronika · Polines</p>
+  <p>Dibuat dengan semangat perantau dari Pangkalan Bun 🌴</p>
+</footer>
+
+<!-- ====== SCRIPTS ====== -->
+<script>
+  // ---- DATA SKILLS ----
+  // Untuk tambah skill baru: salin satu baris {icon,name,desc,pct} dan tambahkan ke array
+  const skills = [
+    {icon:'ti-cpu',       name:'PLC Programming',   desc:'Ladder diagram, FBD, kontrol industri',  pct:75},
+    {icon:'ti-bolt',      name:'Instalasi Listrik',  desc:'1 fase & 3 fase, panel, wiring, PLN',    pct:85},
+    {icon:'ti-settings',  name:'Motor & VFD',        desc:'Pengendalian motor 3 fase + drive',       pct:80},
+    {icon:'ti-eye',       name:'Computer Vision',    desc:'YOLOv8, deteksi objek & cacat bentuk',   pct:60},
+    {icon:'ti-code',      name:'Python (Dasar)',      desc:'Scripting untuk AI & otomasi',           pct:50},
+    {icon:'ti-tool',      name:'Servis Sepeda Motor', desc:'Pemeliharaan & troubleshooting',         pct:70},
+    {icon:'ti-chart-line',name:'Instrumentasi',      desc:'Sensor, transduser, kalibrasi',          pct:65},
+    {icon:'ti-plug',      name:'K3 Listrik',         desc:'Target sertifikasi pasca kerja',         pct:40},
+  ];
+
+  // Render skill cards
+  const grid = document.getElementById('skillsGrid');
+  skills.forEach(s => {
+    const card = document.createElement('div');
+    card.className = 'skill-card';
+    card.innerHTML = `
+      <div class="skill-icon"><i class="ti ${s.icon}" aria-hidden="true"></i></div>
+      <div class="skill-name">${s.name}</div>
+      <div class="skill-desc">${s.desc}</div>
+      <div class="skill-bar"><div class="skill-fill" data-pct="${s.pct}"></div></div>
+    `;
+    grid.appendChild(card);
+  });
+
+  // ---- SCROLL REVEAL ----
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        // Animasi bar skill setelah section muncul
+        e.target.querySelectorAll('.skill-fill').forEach(bar => {
+          bar.style.width = bar.dataset.pct + '%';
+        });
+      }
+    });
+  }, {threshold: 0.1});
+  revealEls.forEach(el => observer.observe(el));
+
+  // ---- HAMBURGER MOBILE ----
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>
