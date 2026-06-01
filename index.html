@@ -5,681 +5,614 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gusti Muhammad Hairul Alim — Portfolio</title>
 <meta name="description" content="Portfolio Gusti Muhammad Hairul Alim, Mahasiswa D4 Teknologi Rekayasa Elektronika Politeknik Negeri Semarang">
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#0d0f14;--bg2:#131720;--bg3:#1a1f2e;
-  --accent:#00e5a0;--text:#e8ecf4;--muted:#7a8299;
-  --border:#252b3b;--card:#161b27;
+  --bg:#060a12;--bg2:#0c1220;--bg3:#0f1828;
+  --accent:#00c8ff;--accent2:#0066ff;--gold:#e8b84b;
+  --text:#dde6f5;--muted:#6b7fa3;--border:rgba(0,200,255,0.12);
+  --card:rgba(12,18,32,0.85);--glow:rgba(0,200,255,0.06);
 }
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;line-height:1.6;overflow-x:hidden}
+html{scroll-behavior:smooth;font-family:'Outfit',sans-serif;background-color:var(--bg);color:var(--text);overflow-x:hidden}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,15,20,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;}
-.nav-logo{font-family:'Space Mono',monospace;font-size:13px;color:var(--accent);letter-spacing:1px}
-.nav-links{display:flex;gap:1.5rem}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-family:'Space Mono',monospace;transition:color .2s}
+/* ===== REQ 5: BACKGROUND UTAMA SEAMLESS UNTUK SECTION 1 SAMPAI 5 ===== */
+.global-circuit-bg {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.25;
+}
+
+/* ===== NAVBAR ===== */
+nav{position:fixed;top:0;left:0;width:100%;z-index:100;backdrop-filter:blur(12px);border-bottom:1px solid var(--border);background:rgba(6,10,18,0.7)}
+.nav-container{max-width:1200px;margin:0 auto;padding:1.2rem 2rem;display:flex;justify-content:between;align-items:center;display: flex; justify-content: space-between;}
+.logo{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.3rem;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:8px}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--text);text-decoration:none;font-weight:500;transition:.3s;font-size:.95rem;position:relative;padding:0.3rem 0}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--accent);transition:.3s}
 .nav-links a:hover{color:var(--accent)}
-.hamburger{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer}
-@media(max-width:600px){
-  .nav-links{display:none;flex-direction:column;position:absolute;top:60px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--border);padding:1rem 2rem;gap:1rem}
-  .nav-links.open{display:flex}
-  .hamburger{display:block}
+.nav-links a:hover::after{width:100%}
+#hamburger{display:none;background:none;border:none;color:var(--text);font-size:1.6rem;cursor:pointer}
+
+/* ===== COMMON SECTION STYLES ===== */
+section{padding:100px 2rem 80px;max-width:1200px;margin:0 auto;position:relative;min-height:90vh;display:flex;flex-direction:column;justify-content:center}
+.section-title{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;margin-bottom:3.5rem;position:relative;display:inline-block;letter-spacing:-0.5px}
+.section-title span{color:var(--accent)}
+.section-title::after{content:'';position:absolute;bottom:-10px;left:0;width:60px;height:4px;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px}
+
+/* ===== REQ 1 & 4: HERO SECTION + FOTO TAMPILAN AWAL ===== */
+.hero-wrapper{display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;align-items:center;width:100%}
+.hero-info{display:flex;flex-direction:column;gap:1.5rem}
+.badge{background:rgba(0,200,255,0.08);border:1px solid var(--border);color:var(--accent);padding:0.5rem 1.2rem;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:0.85rem;width:fit-content;display:flex;align-items:center;gap:8px}
+.hero-info h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;line-height:1.1;letter-spacing:-1px}
+.hero-info h1 span{background:linear-gradient(135deg,var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-info p{color:var(--muted);font-size:1.1rem;line-height:1.6;max-width:540px}
+
+/* Kontainer Foto Profil Tampilan Awal (Kiri) */
+.profile-display {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.profile-img-frame {
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  padding: 4px;
+  background: var(--bg2);
+  box-shadow: 0 0 20px rgba(0,200,255,0.2);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.profile-img-frame img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.profile-text-meta h4 { font-size: 1.1rem; font-weight: 600; color: var(--text); }
+.profile-text-meta p { font-size: 0.85rem; color: var(--muted); }
+
+/* REQ 4: ANIMASI JATOH ID CARD / NAMETAG (Kanan) */
+.hero-visual{display:flex;justify-content:center;align-items:flex-start;position:relative;height:550px}
+.lanyard-gateway{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:4px;height:120px;background:linear-gradient(to bottom, var(--accent2), rgba(0,200,255,0.4));z-index:2;transform-origin:top}
+
+.draggable-nametag {
+  position: absolute;
+  top: 20px;
+  cursor: grab;
+  z-index: 5;
+  touch-action: none;
+  animation: dropIn 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+.draggable-nametag:active { cursor: grabbing; }
+
+@keyframes dropIn {
+  0% { transform: translateY(-500px) rotate(-15deg); opacity: 0; }
+  100% { transform: translateY(0) rotate(0deg); opacity: 1; }
 }
 
-/* SECTIONS */
-section{padding:5rem 2rem;max-width:900px;margin:0 auto}
-
-/* HERO */
-#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:6rem;position:relative;}
-.hero-grid{position:absolute;top:0;left:0;right:0;bottom:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:0.3;pointer-events:none;z-index:-1;}
-.hero-glow{position:absolute;width:350px;height:350px;background:radial-gradient(circle,rgba(0,229,160,0.07),transparent 70%);top:30%;right:5%;pointer-events:none;z-index:-1;}
-
-/* HERO LAYOUT: kiri teks, kanan nametag */
-.hero-content{display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;}
-.hero-left{flex:1;min-width:260px}
-.hero-tag{font-family:'Space Mono',monospace;font-size:12px;color:var(--accent);letter-spacing:3px;margin-bottom:1rem;display:block;opacity:0;animation:fadeUp .6s .2s forwards;}
-.hero-name{font-size:clamp(2rem,5vw,4rem);font-weight:800;line-height:1.05;margin-bottom:1rem;opacity:0;animation:fadeUp .6s .4s forwards;}
-.hero-name span{color:var(--accent)}
-.hero-sub{font-size:.97rem;color:var(--muted);max-width:480px;opacity:0;animation:fadeUp .6s .6s forwards;margin-bottom:2rem;}
-.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:fadeUp .6s .8s forwards}
-.btn-primary{background:var(--accent);color:#0d0f14;padding:.75rem 1.5rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:14px;transition:opacity .2s;display:inline-block;}
-.btn-primary:hover{opacity:.85}
-.btn-outline{border:1px solid var(--border);color:var(--text);padding:.75rem 1.5rem;border-radius:6px;text-decoration:none;font-size:14px;transition:border-color .2s;display:inline-block;}
-.btn-outline:hover{border-color:var(--accent)}
-
-/* NAMETAG */
-.nametag-wrap{
-  flex-shrink:0;display:flex;flex-direction:column;align-items:center;
-  opacity:0;animation:dropIn 1s cubic-bezier(0.22,1,0.36,1) 0.6s forwards;
+.nametag-card {
+  width: 300px; height: 440px;
+  background: linear-gradient(145deg, rgba(15,24,40,0.95), rgba(6,10,18,0.98));
+  border: 1px solid rgba(0,200,255,0.25);
+  border-radius: 20px;
+  padding: 1.8rem;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 0 20px rgba(0,200,255,0.05);
+  display: flex; flex-direction: column; align-items: center; position: relative;
+  overflow: hidden; backdrop-filter: blur(10px);
 }
-@keyframes dropIn{
-  0%  {opacity:0;transform:translateY(-140px) rotate(-10deg);}
-  55% {opacity:1;transform:translateY(14px) rotate(2deg);}
-  70% {transform:translateY(-7px) rotate(-1.5deg);}
-  83% {transform:translateY(5px) rotate(.8deg);}
-  92% {transform:translateY(-2px) rotate(-.3deg);}
-  100%{opacity:1;transform:translateY(0) rotate(0deg);}
+.nametag-card::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px;
+  background: linear-gradient(90deg, var(--accent), var(--gold));
 }
-#nametagDraggable{
-  position:relative;cursor:grab;
-  display:flex;flex-direction:column;align-items:center;
+.nametag-header { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-bottom: 1.5rem; width: 100% }
+.nametag-logo { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; color: var(--gold); letter-spacing: 2px; }
+.nametag-holder {
+  width: 130px; height: 130px; border-radius: 12px;
+  border: 2px solid var(--border); background: var(--bg);
+  margin-bottom: 1.2rem; overflow: hidden; position: relative;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
-#nametagDraggable:active{cursor:grabbing}
-.lanyard{width:3px;height:70px;background:linear-gradient(180deg,#1e2a3a,#0e1520);border-radius:2px;margin-bottom:-3px;position:relative;}
-.lanyard::before{content:'';position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:36px;height:6px;background:#1e2a3a;border-radius:3px;}
-.lanyard-clip{width:14px;height:12px;background:rgba(0,229,160,.25);border:1px solid var(--accent);border-radius:2px;margin:0 auto;position:relative;z-index:2;}
-.nametag{
-  width:190px;background:var(--card);border:1px solid rgba(0,229,160,.2);
-  border-radius:12px;padding:1.2rem 1rem;
-  box-shadow:0 0 35px rgba(0,229,160,.07),inset 0 1px 0 rgba(255,255,255,.04);
-  transform-style:preserve-3d;will-change:transform;
+.nametag-holder img { width: 100%; height: 100%; object-fit: cover; }
+.nametag-name { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 4px; text-align: center; color: #fff }
+.nametag-sub { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--accent); margin-bottom: 1.5rem; }
+.nametag-barcode { width: 100%; margin-top: auto; opacity: 0.7; filter: invert(1); height: 35px; object-fit: contain; }
+
+/* ===== ABOUT SECTION ===== */
+.about-grid{display:grid;grid-template-columns:1fr;gap:2.5rem}
+.about-box{background:var(--card);border:1px solid var(--border);padding:2.5rem;border-radius:20px;backdrop-filter:blur(10px)}
+.about-box p{color:var(--text);font-size:1.05rem;line-height:1.7;margin-bottom:1.5rem}
+
+/* ===== SKILLS SECTION ===== */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
+.skill-category{background:var(--card);border:1px solid var(--border);padding:2rem;border-radius:20px;backdrop-filter:blur(10px);transition:.3s}
+.skill-category:hover{border-color:rgba(0,200,255,0.3);transform:translateY(-5px)}
+.skill-category h3{font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;display:flex;align-items:center;gap:10px;color:var(--accent)}
+.skill-items{display:flex;flex-wrap:wrap;gap:0.8rem}
+.skill-badge{background:rgba(221,230,245,0.03);border:1px solid rgba(221,230,245,0.08);padding:0.5rem 1rem;border-radius:10px;font-size:0.9rem;display:flex;align-items:center;gap:8px;transition:.2s}
+.skill-badge:hover{background:rgba(0,200,255,0.08);border-color:var(--accent);color:#fff}
+.skill-badge i{color:var(--accent);font-size:1.1rem}
+
+/* ===== REQ 2: EXPERIENCES SECTION (1 FOTO SERTIFIKAT) ===== */
+.timeline{position:relative;margin-left:1.5rem;border-left:2px solid var(--border);display:flex;flex-direction:column;gap:3rem}
+.timeline-item{position:relative;padding-left:2.5rem}
+.timeline-dot{position:absolute;left:-9px;top:4px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--accent);box-shadow:0 0 10px var(--accent)}
+.timeline-content{background:var(--card);border:1px solid var(--border);padding:2rem;border-radius:20px;backdrop-filter:blur(10px)}
+.time-tag{font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--gold);font-weight:600;margin-bottom:0.5rem;display:block}
+.timeline-content h3{font-size:1.3rem;font-weight:700;margin-bottom:0.3rem}
+.timeline-content h4{font-size:0.95rem;color:var(--muted);margin-bottom:1rem;font-weight:500}
+.timeline-content p{color:var(--muted);font-size:0.95rem;line-height:1.6;margin-bottom:1.5rem}
+
+/* Desain Wadah 1 Sertifikat Riwayat Pengalaman */
+.cert-single-wrapper {
+  width: 100%; max-width: 450px;
+  border-radius: 12px; overflow: hidden;
+  border: 1px solid rgba(0,200,255,0.15);
+  background: rgba(0,0,0,0.2);
+  cursor: pointer; transition: 0.3s ease;
+  position: relative;
 }
-.nt-logo{font-family:'Space Mono',monospace;font-size:7.5px;color:var(--accent);letter-spacing:1.5px;text-align:center;border-bottom:1px solid var(--border);padding-bottom:.5rem;margin-bottom:.75rem;}
-.nt-photo{width:95px;height:115px;border-radius:8px;margin:0 auto .75rem;border:2px solid rgba(0,229,160,.2);overflow:hidden;display:flex;align-items:center;justify-content:center;}
-.nt-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;}
-.nt-name{font-size:9px;font-weight:700;text-align:center;color:var(--text);margin-bottom:.2rem;letter-spacing:.3px}
-.nt-role{font-size:7.5px;color:var(--muted);text-align:center;font-family:'Space Mono',monospace;margin-bottom:.5rem}
-.nt-badge{background:rgba(0,229,160,.1);border:1px solid rgba(0,229,160,.25);color:var(--accent);font-size:7px;text-align:center;padding:.2rem .5rem;border-radius:4px;font-family:'Space Mono',monospace;letter-spacing:.5px;}
-.nt-hint{font-size:8px;color:var(--muted);text-align:center;margin-top:.5rem;font-family:'Space Mono',monospace;opacity:.45}
-
-/* SECTION HEADERS */
-.sec-label{font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:3px;margin-bottom:.4rem}
-.sec-title{font-size:2rem;font-weight:800;margin-bottom:2.5rem;position:relative}
-.sec-title::after{content:'';display:block;width:40px;height:3px;background:var(--accent);margin-top:.5rem;border-radius:2px}
-
-/* ABOUT */
-.about-intro{color:var(--muted);font-size:.95rem;line-height:1.85;margin-bottom:2rem}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-@media(max-width:600px){.about-grid{grid-template-columns:1fr}}
-.about-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.25rem}
-.about-card h3{font-size:.75rem;font-family:'Space Mono',monospace;color:var(--accent);margin-bottom:.5rem;letter-spacing:1px}
-.about-card p{color:var(--muted);font-size:.88rem;line-height:1.7}
-.about-card strong{color:var(--text)}
-
-/* SKILLS */
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1rem}
-.skill-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.25rem;transition:border-color .2s,transform .2s;}
-.skill-card:hover{border-color:var(--accent);transform:translateY(-3px)}
-.skill-icon{font-size:24px;color:var(--accent);margin-bottom:.6rem}
-.skill-name{font-weight:700;font-size:.95rem;margin-bottom:.2rem}
-.skill-desc{font-size:.78rem;color:var(--muted);line-height:1.5}
-.skill-bar{height:3px;background:var(--border);border-radius:2px;margin-top:.75rem;overflow:hidden}
-.skill-fill{height:100%;background:var(--accent);border-radius:2px;width:0%;transition:width 1.2s ease}
-
-/* TIMELINE */
-.timeline{position:relative;padding-left:2rem}
-.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--border)}
-.tl-item{position:relative;margin-bottom:2.5rem}
-.tl-item:last-child{margin-bottom:0}
-.tl-dot{position:absolute;left:-2.35rem;top:.4rem;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg);}
-.tl-date{font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:.2rem;letter-spacing:1px}
-.tl-title{font-weight:700;font-size:1.05rem;margin-bottom:.15rem}
-.tl-place{font-size:.83rem;color:var(--muted);margin-bottom:.4rem;font-style:italic}
-.tl-desc{font-size:.9rem;color:var(--muted);line-height:1.7}
-
-/* FOTO SERTIFIKAT / MAGANG DI TIMELINE */
-.tl-foto{
-  margin-top:.85rem;
-  border-radius:8px;overflow:hidden;
-  border:1px solid var(--border);
-  cursor:pointer;transition:border-color .2s;
-  display:inline-block;width:100%;
+.cert-single-wrapper::after {
+  content: '\eb11  Lihat Sertifikat'; font-family: 'tabler-icons';
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(6,10,18,0.75); display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-weight: 500; font-size: 0.95rem; opacity: 0; transition: 0.3s;
 }
-.tl-foto:hover{border-color:var(--accent)}
-.tl-foto img{
-  width:100%;display:block;
-  border-radius:7px;
-  transition:transform .3s;
+.cert-single-wrapper:hover::after { opacity: 1; }
+.cert-single-wrapper:hover { transform: scale(1.02); border-color: var(--accent); }
+.cert-single-wrapper img { width: 100%; height: auto; display: block; object-fit: cover; }
+
+/* ===== REQ 3: PROJECTS SECTION (2-3 GAMBAR KECIL BUKTI) ===== */
+.project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:2.5rem}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:25px;overflow:hidden;backdrop-filter:blur(10px);display:flex;flex-direction:column;transition:.3s}
+.project-card:hover{border-color:rgba(0,200,255,0.3);transform:translateY(-5px)}
+.project-info{padding:2rem;display:flex;flex-direction:column;gap:1rem;flex-grow:1}
+.project-info h3{font-size:1.4rem;font-weight:700;letter-spacing:-0.3px}
+.project-info p{color:var(--muted);font-size:0.95rem;line-height:1.6}
+.project-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:1rem}
+.project-tags span{background:rgba(0,200,255,0.05);color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:0.75rem;padding:0.3rem 0.8rem;border-radius:6px;border:1px solid rgba(0,200,255,0.1)}
+
+/* Desain Mini Grid Gallery untuk 2-3 Gambar Bukti Proyek */
+.project-evidence-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 0 2rem 2rem;
 }
-.tl-foto:hover img{transform:scale(1.02)}
-.tl-foto-grid{display:flex;gap:.6rem;margin-top:.85rem;flex-wrap:wrap}
-.tl-foto-thumb{
-  width:100px;height:72px;border-radius:7px;overflow:hidden;
-  border:1px solid var(--border);cursor:pointer;flex-shrink:0;
-  transition:border-color .2s,transform .2s;
+.evidence-thumb {
+  aspect-ratio: 4/3; border-radius: 8px; overflow: hidden;
+  border: 1px solid rgba(221,230,245,0.1); background: rgba(0,0,0,0.3);
+  cursor: pointer; position: relative; transition: 0.2s;
 }
-.tl-foto-thumb:hover{border-color:var(--accent);transform:scale(1.05)}
-.tl-foto-thumb img{width:100%;height:100%;object-fit:cover}
+.evidence-thumb:hover { border-color: var(--accent); transform: scale(1.05); }
+.evidence-thumb img { width: 100%; height: 100%; object-fit: cover; }
 
-/* PROJECTS */
-.proj-grid{display:grid;gap:1.25rem}
-.proj-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;transition:border-color .2s;}
-.proj-card:hover{border-color:var(--accent)}
-.proj-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.75rem}
-.proj-title{font-weight:700;font-size:1.05rem}
-.proj-badge{background:rgba(0,229,160,.1);border:1px solid rgba(0,229,160,.3);color:var(--accent);font-size:10px;padding:.2rem .6rem;border-radius:20px;font-family:'Space Mono',monospace;white-space:nowrap;flex-shrink:0;}
-.proj-desc{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:1rem}
-.proj-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
-.tag{background:var(--bg3);border:1px solid var(--border);color:var(--muted);font-size:10px;padding:.2rem .55rem;border-radius:4px;font-family:'Space Mono',monospace;}
-.proj-foto-grid{display:flex;gap:.6rem;flex-wrap:wrap}
-.proj-foto-thumb{width:105px;height:72px;border-radius:7px;overflow:hidden;border:1px solid var(--border);cursor:pointer;flex-shrink:0;transition:border-color .2s,transform .2s;position:relative;}
-.proj-foto-thumb:hover{border-color:var(--accent);transform:scale(1.04)}
-.proj-foto-thumb img{width:100%;height:100%;object-fit:cover}
-.proj-foto-num{position:absolute;bottom:4px;right:6px;font-family:'Space Mono',monospace;font-size:8px;color:rgba(255,255,255,.55);}
+/* ===== CONTACT SECTION ===== */
+.contact-wrapper{background:var(--card);border:1px solid var(--border);border-radius:25px;padding:3rem;backdrop-filter:blur(10px);display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.contact-info{display:flex;flex-direction:column;gap:1.5rem}
+.contact-info h3{font-size:1.8rem;font-weight:700}
+.contact-info p{color:var(--muted);line-height:1.6}
+.contact-links{display:flex;flex-direction:column;gap:1.2rem}
+.contact-item{display:flex;align-items:center;gap:15px;color:var(--text);text-decoration:none;font-size:1.05rem;transition:.2s;padding:0.5rem;border-radius:12px;border:1px solid transparent}
+.contact-item:hover{background:rgba(0,200,255,0.04);border-color:var(--border);color:var(--accent)}
+.contact-item i{width:45px;height:45px;background:rgba(0,200,255,0.06);border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--accent)}
 
-/* CONTACT */
-.contact-intro{color:var(--muted);font-size:.95rem;margin-bottom:2rem}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-@media(max-width:600px){.contact-grid{grid-template-columns:1fr}}
-.contact-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.25rem;display:flex;align-items:center;gap:1rem;text-decoration:none;transition:border-color .2s;}
-.contact-item:hover{border-color:var(--accent)}
-.contact-icon{width:40px;height:40px;flex-shrink:0;background:rgba(0,229,160,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--accent);}
-.contact-label{font-size:.7rem;color:var(--muted);font-family:'Space Mono',monospace;letter-spacing:1px;margin-bottom:.15rem}
-.contact-val{font-size:.9rem;font-weight:600;color:var(--text)}
+/* ===== LIGHTBOX ===== */
+.lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(4,6,10,0.95);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.3s;backdrop-filter:blur(10px)}
+.lightbox.open{opacity:1;pointer-events:all}
+.lightbox-content{max-width:85%;max-height:85%;border-radius:12px;box-shadow:0 25px 50px rgba(0,0,0,0.5);border:1px solid rgba(221,230,245,0.1);transform:scale(0.95);transition:.3s}
+.lightbox.open .lightbox-content{transform:scale(1)}
+.lightbox-close{position:absolute;top:2rem;right:2rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;opacity:0.7;transition:.2s}
+.lightbox-close:hover{opacity:1;color:var(--accent)}
 
-/* DIVIDER */
-.divider{height:1px;background:var(--border);max-width:900px;margin:0 auto}
+/* ===== SCROLL REVEAL ===== */
+.reveal{opacity:0;transform:translateY(30px);transition:all 0.8s cubic-bezier(0.16, 1, 0.3, 1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
 
-/* FOOTER */
-footer{text-align:center;padding:2rem;font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);border-top:1px solid var(--border);}
-
-/* LIGHTBOX */
-.lightbox{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.88);align-items:center;justify-content:center;}
-.lightbox.open{display:flex}
-.lightbox img{max-width:92vw;max-height:88vh;border-radius:10px;border:1px solid var(--border)}
-.lb-close{position:absolute;top:1.25rem;right:1.5rem;background:none;border:none;color:var(--text);font-size:30px;cursor:pointer;line-height:1;}
-
-/* ANIMATIONS */
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
-.reveal.visible{opacity:1;transform:none}
+/* ===== RESPONSIVE STYLES ===== */
+@media (max-width: 992px){
+  .hero-wrapper{grid-template-columns:1fr;gap:3rem;text-align:center}
+  .hero-info{align-items:center}
+  .profile-display{justify-content:center}
+  .hero-visual{height:480px}
+  .contact-wrapper{grid-template-columns:1fr;gap:2.5rem}
+}
+@media (max-width: 640px){
+  #hamburger{display:block}
+  .nav-links{position:fixed;top:73px;left:-100%;width:100%;height:calc(100vh - 73px);background:var(--bg);flex-direction:column;align-items:center;padding-top:3rem;transition:.4s ease;border-top:1px solid var(--border)}
+  .nav-links.open{left:0}
+  .project-evidence-gallery{grid-template-columns:repeat(3, 1fr);padding:0 1.2rem 1.5rem}
+  .contact-wrapper{padding:2rem 1.5rem}
+}
 </style>
 </head>
 <body>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-  <button class="lb-close" onclick="closeLB()">&#10005;</button>
-  <img id="lbImg" src="" alt="">
-</div>
+<svg class="global-circuit-bg" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00c8ff" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0066ff" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+  <path d="M100,150 L300,150 L400,250 L400,450 L300,550 L100,550" fill="none" stroke="url(#lineGrad)" stroke-width="1.5" />
+  <path d="M1300,150 L1100,150 L1000,250 L1000,600 L1100,700 L1300,700" fill="none" stroke="url(#lineGrad)" stroke-width="1.5" />
+  <path d="M500,800 L700,600 L900,800" fill="none" stroke="url(#lineGrad)" stroke-width="1.5" />
+  <circle cx="100" cy="150" r="4" fill="#00c8ff" />
+  <circle cx="400" cy="250" r="3" fill="#e8b84b" />
+  <circle cx="100" cy="550" r="4" fill="#00c8ff" />
+  <circle cx="1300" cy="150" r="4" fill="#00c8ff" />
+  <circle cx="1000" cy="600" r="3" fill="#e8b84b" />
+  <circle cx="1300" cy="700" r="4" fill="#00c8ff" />
+</svg>
 
-<!-- NAV -->
 <nav>
-  <div class="nav-logo">GMHA.PORTFOLIO</div>
-  <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
-  <div class="nav-links" id="navLinks">
-    <a href="#about">Profil</a>
-    <a href="#skills">Skill</a>
-    <a href="#experience">Pengalaman</a>
-    <a href="#projects">Proyek</a>
-    <a href="#contact">Kontak</a>
+  <div class="nav-container">
+    <a href="#" class="logo"><i class="ti ti-cpu"></i> GUSTI.M</a>
+    <button id="hamburger"><i class="ti ti-menu-2"></i></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero">Beranda</a></li>
+      <li><a href="#about">Tentang</a></li>
+      <li><a href="#skills">Keahlian</a></li>
+      <li><a href="#experience">Pengalaman</a></li>
+      <li><a href="#projects">Proyek</a></li>
+      <li><a href="#contact">Kontak</a></li>
+    </ul>
   </div>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-content">
+  <div class="hero-wrapper">
+    <div class="hero-info">
+      <div class="badge"><i class="ti ti-bolt"></i> Elektronika Terintegrasi</div>
+      <h1>Hai, Saya <span>Gusti Muhammad</span></h1>
+      <p>Mahasiswa D4 Teknologi Rekayasa Elektronika di Politeknik Negeri Semarang. Fokus pada pengembangan sistem tertanam, otomasi sirkuit, dan kendali cerdas.</p>
+      
+      <div class="profile-display">
+        <div class="profile-img-frame">
+          <img src="foto-profil-utama.jpg" alt="Gusti Muhammad Hairul Alim">
+        </div>
+        <div class="profile-text-meta">
+          <h4>Gusti Muhammad Hairul Alim</h4>
+          <p>D4 Teknologi Rekayasa Elektronika — POLINES</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="hero-visual">
+      <div class="lanyard-gateway" id="lanyardNode"></div>
+      <div class="draggable-nametag" id="dragTag">
+        <div class="nametag-card" id="tiltTag">
+          <div class="nametag-header">
+            <div class="nametag-logo"><i class="ti ti-school"></i> POLINES</div>
+          </div>
+          <div class="nametag-holder">
+            <img src="FotoProfil.jpeg" alt="ID Photo">
+          </div>
+          <div class="nametag-name">Gusti Muhammad H.A.</div>
+          <div class="nametag-sub">STUDENT ID • ELECTRONICS</div>
+          <img src="https://cdn.jsdelivr.net/jsbarcode/3.6.0/barcodes/JsBarcode.all.min.js" alt="Barcode Placeholder" class="nametag-barcode" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 30\'><rect width=\'100\' height=\'30\' fill=\'white\'/><line x1=\'10\' y1=\'5\' x2=\'10\' y2=\'25\' stroke=\'black\' stroke-width=\'2\'/><line x1=\'15\' y1=\'5\' x2=\'15\' y2=\'25\' stroke=\'black\' stroke-width=\'1\'/><line x1=\'20\' y1=\'5\' x2=\'20\' y2=\'25\' stroke=\'black\' stroke-width=\'3\'/><line x1=\'28\' y1=\'5\' x2=\'28\' y2=\'25\' stroke=\'black\' stroke-width=\'1\'/><line x1=\'35\' y1=\'5\' x2=\'35\' y2=\'25\' stroke=\'black\' stroke-width=\'2\'/><line x1=\'45\' y1=\'5\' x2=\'45\' y2=\'25\' stroke=\'black\' stroke-width=\'4\'/><line x1=\'55\' y1=\'5\' x2=\'55\' y2=\'25\' stroke=\'black\' stroke-width=\'1\'/><line x1=\'65\' y1=\'5\' x2=\'65\' y2=\'25\' stroke=\'black\' stroke-width=\'2\'/><line x1=\'72\' y1=\'5\' x2=\'72\' y2=\'25\' stroke=\'black\' stroke-width=\'3\'/><line x1=\'85\' y1=\'5\' x2=\'85\' y2=\'25\' stroke=\'black\' stroke-width=\'1\'/></svg>'">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Kiri: teks -->
-    <div class="hero-left">
-      <span class="hero-tag">// D4 Teknologi Rekayasa Elektronika · Polines</span>
-      <h1 class="hero-name">Gusti Muhammad<br><span>Hairul Alim</span></h1>
-      <p class="hero-sub">
-        Mahasiswa D4 Teknologi Rekayasa Elektronika dengan keahlian di bidang
-        pembacaan wiring diagram, wiring panel kontrol, dan dasar sistem otomasi industri.
-      </p>
-      <div class="hero-btns">
-        <a href="#projects" class="btn-primary">Lihat Proyek</a>
-        <a href="#contact" class="btn-outline">Hubungi Saya</a>
+<section id="about" class="reveal">
+  <h2 class="section-title">Tentang <span>Saya</span></h2>
+  <div class="about-grid">
+    <div class="about-box">
+      <p>Saya adalah seorang praktisi tingkat akademi di bidang rekayasa elektronika yang memiliki ketertarikan tinggi terhadap Internet of Things (IoT), PLC, integrasi sistem kelistrikan industri, dan pemrograman mikrokontroler. Berbekal pembelajaran intensif di Politeknik Negeri Semarang, saya selalu berorientasi mendesain solusi hardware dan software yang efisien, aman, dan aplikatif.</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="reveal">
+  <h2 class="section-title">Keahlian <span>Teknis</span></h2>
+  <div class="skills-grid">
+    <div class="skill-category">
+      <h3><i class="ti ti-circuit-board"></i> Hardware & EDA</h3>
+      <div class="skill-items">
+        <span class="skill-badge"><i class="ti ti-layers-difference"></i> Proteus</span>
+        <span class="skill-badge"><i class="ti ti-bolt"></i> EPLAN</span>
+        <span class="skill-badge"><i class="ti ti-box"></i> AutoCAD</span>
+        <span class="skill-badge"><i class="ti ti-cpu"></i> Altium Designer</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <h3><i class="ti ti-binary"></i> Control & Software</h3>
+      <div class="skill-items">
+        <span class="skill-badge"><i class="ti ti-settings-automation"></i> PLC / SCADA</span>
+        <span class="skill-badge"><i class="ti ti-terminal-2"></i> Arduino IDE</span>
+        <span class="skill-badge"><i class="ti ti-function"></i> MATLAB</span>
+        <span class="skill-badge"><i class="ti ti-brand-python"></i> Python</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="reveal">
+  <h2 class="section-title">Riwayat <span>Pengalaman</span></h2>
+  <div class="timeline">
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <span class="time-tag">2024 - 2025</span>
+        <h3>Fungsionaris Badan Eksekutif Mahasiswa (BEM)</h3>
+        <h4>Politeknik Negeri Semarang</h4>
+        <p>Bertanggung jawab dalam pengelolaan program kerja skala kampus, manajemen tim, serta mengoordinasikan aspek teknis operasional dalam kepengurusan.</p>
+        
+        <div class="cert-single-wrapper" onclick="openLightbox(this.querySelector('img').src)">
+          <img src="Sertifikat Staff Muda Gusti Muhammad Hairul Alim_page-0001.jpg" alt="Sertifikat Hasil Pengalaman BEM">
+        </div>
       </div>
     </div>
 
-    <!-- Kanan: Nametag bisa di-drag -->
-    <div class="nametag-wrap">
-      <div id="nametagDraggable">
-        <div class="lanyard"></div>
-        <div class="lanyard-clip"></div>
-        <div class="nametag" id="nametag">
-          <div class="nt-logo">POLITEKNIK NEGERI SEMARANG</div>
-          <div class="nt-photo">
-            <!--
-              ============================================================
-              GANTI: upload "foto_profil.jpg" ke GitHub repo kamu,
-              lalu src di bawah ini sudah otomatis terhubung.
-              ============================================================
-            -->
-            <img src="FotoProfil.jpg" alt="Gusti Muhammad Hairul Alim">
-          </div>
-          <div class="nt-name">GUSTI MUHAMMAD HAIRUL ALIM</div>
-          <div class="nt-role">D4 TEKNIK REKAYASA ELEKTRONIKA</div>
-          <div class="nt-badge">Teknik Elektro</div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <span class="time-tag">2025</span>
+        <h3>Asisten Laboratorium Kendali & Otomasi</h3>
+        <h4>Politeknik Negeri Semarang</h4>
+        <p>Membantu membimbing mahasiswa dalam praktikum perancangan sirkuit kendali motor relai, pemrograman dasar PLC, dan kalibrasi sensor industri.</p>
+        
+        <div class="cert-single-wrapper" onclick="openLightbox(this.querySelector('img').src)">
+          <img src="sertifikat-asisten-lab.jpg" alt="Sertifikat Asisten Lab">
         </div>
-        <div class="nt-hint">↕ drag · spring back</div>
       </div>
     </div>
 
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="reveal">
-    <div class="sec-label">// 01. Tentang</div>
-    <h2 class="sec-title">Profil Saya</h2>
-    <p class="about-intro">
-      Saya merupakan mahasiswa Semester 6 Program Studi Teknologi Rekayasa Elektronika, Jurusan Teknik Elektro
-      di Politeknik Negeri Semarang, dengan latar belakang SMK Teknik Jaringan Tenaga Listrik di SMKN 2 Pangkalan Bun.
-      Memiliki fokus pada bidang otomasi industri, sistem kontrol, instrumentasi, serta integrasi perangkat keras dan
-      lunak dalam sistem elektronika terapan. Saya berorientasi pada pembelajaran berbasis praktik (hands-on) dan
-      pengembangan sistem langsung di lapangan — mulai dari perancangan, perakitan, pengawatan, hingga troubleshooting
-      sistem elektronika dan otomasi. Saat ini sedang mengerjakan Tugas Akhir berupa sistem sorting otomatis berbasis
-      YOLOv8 dan PLC yang menggabungkan computer vision, kontrol industri, sensor, dan otomasi.
-    </p>
-    <div class="about-grid">
-      <div class="about-card">
-        <h3>// PENDIDIKAN</h3>
-        <p><strong>D4 Teknologi Rekayasa Elektronika</strong><br>Politeknik Negeri Semarang<br>2023 – 2027</p>
+<section id="projects" class="reveal">
+  <h2 class="section-title">Karya & <span>Proyek</span></h2>
+  <div class="project-grid">
+    
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Sistem Kontrol & Monitoring Magang Industri</h3>
+        <p>Perancangan modul otomasi menggunakan kontrol terprogram untuk optimasi sistem distribusi daya listrik di lini produksi.</p>
+        <div class="project-tags">
+          <span>PLC</span><span>SCADA</span><span>EPLAN</span>
+        </div>
       </div>
-      <div class="about-card">
-        <h3>// ASAL</h3>
-        <p><strong>Pangkalan Bun, Kalimantan Tengah</strong><br>Saat ini berdomisili di Semarang sebagai mahasiswa aktif.</p>
-      </div>
-      <div class="about-card">
-        <h3>// ORGANISASI</h3>
-        <p>BEM Polines (Staf Muda), LO PESIMA, Liaison Officer Vocatech Edufair 2026</p>
-      </div>
-      <div class="about-card">
-        <h3>// MINAT</h3>
-        <p>Sistem otomasi industri, Operation &amp; Maintenance, Instalasi Listrik Industri</p>
+      
+      <div class="project-evidence-gallery">
+        <div class="evidence-thumb" onclick="openLightbox(this.querySelector('img').src)">
+          <img src="FotoMagang1.jpeg" alt="Bukti Magang 1">
+        </div>
+        <div class="evidence-thumb" onclick="openLightbox(this.querySelector('img').src)">
+          <img src="FotoMagang2.jpeg" alt="Bukti Magang 2">
+        </div>
+        <div class="evidence-thumb" onclick="openLightbox(this.querySelector('img').src)">
+          <img src="FotoMagang3.jpeg" alt="Bukti Magang 3">
+        </div>
       </div>
     </div>
-  </div>
-</section>
 
-<div class="divider"></div>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="reveal">
-    <div class="sec-label">// 02. Keahlian</div>
-    <h2 class="sec-title">Skill &amp; Kompetensi</h2>
-    <div class="skills-grid" id="skillsGrid"></div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="reveal">
-    <div class="sec-label">// 03. Pengalaman</div>
-    <h2 class="sec-title">Riwayat Pengalaman</h2>
-    <div class="timeline">
-
-      <!-- 1. MAGANG SMK -->
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-date">JULI – SEPTEMBER 2022 · MAGANG SMK</div>
-        <div class="tl-title">Teknisi Listrik — PT Karya Mitra Sejahtera</div>
-        <div class="tl-place">Pangkalan Bun, Kalimantan Tengah</div>
-        <div class="tl-desc">
-          Melakukan instalasi kelistrikan rumah, pemasangan KWH meter, dan wiring listrik 1 fase.
-          Pengalaman langsung di lapangan sesuai standar instalasi PLN.
-        </div>
-        <!--
-          ============================================================
-          FOTO MAGANG (3 thumbnail, klik untuk besar)
-          Upload file-file ini ke GitHub:
-            foto_magang1.png
-            foto_magang2.png
-            foto_magang3.jpg
-          ============================================================
-        -->
-        <div class="tl-foto-grid">
-          <div class="tl-foto-thumb" onclick="openLB('foto_magang1.png')">
-            <img src="FotoMagang1.png" alt="Foto Magang 1">
-          </div>
-          <div class="tl-foto-thumb" onclick="openLB('foto_magang2.png')">
-            <img src="FotoMagang2.png" alt="Foto Magang 2">
-          </div>
-          <div class="tl-foto-thumb" onclick="openLB('foto_magang3.jpg')">
-            <img src="FotoMagang3.jpg" alt="Foto Magang 3">
-          </div>
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Prototipe Robotik Lengan Cerdas Berbasis Mikrokontroler</h3>
+        <p>Pengembangan lengan robot pemilah barang otomatis berdasarkan pembacaan sensor warna terintegrasi dengan basis data.</p>
+        <div class="project-tags">
+          <span>Arduino</span><span>Sensor</span><span>C++</span>
         </div>
       </div>
-
-      <!-- 2. PESIMA -->
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-date">JUNI – SEPTEMBER 2024 · VOLUNTEER</div>
-        <div class="tl-title">Liaison Officer Pengembangan Spiritual Mahasiswa Baru</div>
-        <div class="tl-place">Politeknik Negeri Semarang</div>
-        <div class="tl-desc">
-          Bertugas sebagai pendamping peserta dalam kegiatan pengembangan spiritual mahasiswa baru
-          di lingkungan kampus.
+      
+      <div class="project-evidence-gallery">
+        <div class="evidence-thumb" onclick="openLightbox(this.querySelector('img').src)">
+          <img src="foto-robotik-1.jpg" alt="Bukti Robotik 1">
         </div>
-        <!--
-          ============================================================
-          SERTIFIKAT PESIMA
-          Upload: sertifikat_pesima.jpg  ke GitHub
-          Kalau belum ada sertifikat, hapus blok <div class="tl-foto"> ini saja.
-          ============================================================
-        -->
-        <div class="tl-foto" onclick="openLB('sertifikat_pesima.jpg')">
-          <img src="sertifikat_pesima.jpg" alt="Sertifikat LO PESIMA">
+        <div class="evidence-thumb" onclick="openLightbox(this.querySelector('img').src)">
+          <img src="foto-robotik-2.jpg" alt="Bukti Robotik 2">
+        </div>
+        <div class="evidence-thumb" onclick="openLightbox(this.querySelector('img').src)">
+          <img src="foto-robotik-3.jpg" alt="Bukti Robotik 3">
         </div>
       </div>
-
-      <!-- 3. BEM -->
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-date">NOVEMBER 2024 – MEI 2025 · ORGANISASI</div>
-        <div class="tl-title">Staf Muda Kementerian Agama — BEM Polines</div>
-        <div class="tl-place">Politeknik Negeri Semarang</div>
-        <div class="tl-desc">
-          Berpartisipasi aktif dalam program kerja kementerian agama, koordinasi kegiatan
-          keagamaan dan sosial mahasiswa di kampus.
-        </div>
-        <!--
-          ============================================================
-          SERTIFIKAT BEM
-          Upload: sertifikat_bem.jpg  ke GitHub
-          (file ini sudah ada di repo kamu dengan nama panjang,
-           rename saja jadi sertifikat_bem.jpg sebelum upload ulang)
-          ============================================================
-        -->
-        <div class="tl-foto" onclick="openLB('sertifikat_bem.jpg')">
-          <img src="Sertifikat Staff Muda Gusti Muhammad Hairul Alim_page-0001.jpg" alt="Sertifikat Staf Muda BEM">
-        </div>
-      </div>
-
-      <!-- 4. VOCATECH -->
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-date">2026 · VOLUNTEER</div>
-        <div class="tl-title">Liaison Officer — Vocatech Edufair 2026</div>
-        <div class="tl-place">Politeknik Negeri Semarang</div>
-        <div class="tl-desc">
-          Bertugas sebagai penghubung antar pihak dalam acara edukasi dan vokasi
-          bertaraf nasional yang diselenggarakan oleh kampus.
-        </div>
-        <!--
-          ============================================================
-          SERTIFIKAT VOCATECH
-          Upload: sertifikat_vocatech.jpg  ke GitHub
-          Kalau belum ada, hapus blok <div class="tl-foto"> ini saja.
-          ============================================================
-        -->
-        <div class="tl-foto" onclick="openLB('sertifikat_vocatech.jpg')">
-          <img src="sertifikat_vocatech.jpg" alt="Sertifikat Vocatech Edufair 2026">
-        </div>
-      </div>
-
     </div>
+
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="reveal">
-    <div class="sec-label">// 04. Proyek</div>
-    <h2 class="sec-title">Karya &amp; Proyek</h2>
-    <div class="proj-grid">
-
-      <!-- Proyek 1: Tugas Akhir -->
-      <div class="proj-card">
-        <div class="proj-header">
-          <div class="proj-title">Sistem Sorting Otomatis Berbasis YOLOv8 &amp; PLC</div>
-          <div class="proj-badge">TUGAS AKHIR</div>
-        </div>
-        <p class="proj-desc">
-          Sistem penyortiran objek geometri otomatis yang mengintegrasikan computer vision (YOLOv8)
-          dengan PLC untuk klasifikasi bentuk (lingkaran, segitiga, persegi) sekaligus deteksi cacat.
-          Novelti utama: kemampuan deteksi defect yang belum ditemukan pada penelitian sebelumnya.
-        </p>
-        <div class="proj-tags">
-          <span class="tag">YOLOv8</span><span class="tag">PLC</span>
-          <span class="tag">Computer Vision</span><span class="tag">Defect Detection</span>
-          <span class="tag">Otomasi Industri</span><span class="tag">Python</span>
-        </div>
-        <!--
-          Foto proyek TA — upload: foto_ta1.jpg, foto_ta2.jpg, foto_ta3.jpg
-          Kalau belum ada foto, hapus blok proj-foto-grid ini.
-        -->
-        <div class="proj-foto-grid">
-          <div class="proj-foto-thumb" onclick="openLB('foto_ta1.jpg')">
-            <img src="foto_ta1.jpg" alt="Foto TA 1"><div class="proj-foto-num">1/3</div>
-          </div>
-          <div class="proj-foto-thumb" onclick="openLB('foto_ta2.jpg')">
-            <img src="foto_ta2.jpg" alt="Foto TA 2"><div class="proj-foto-num">2/3</div>
-          </div>
-          <div class="proj-foto-thumb" onclick="openLB('foto_ta3.jpg')">
-            <img src="foto_ta3.jpg" alt="Foto TA 3"><div class="proj-foto-num">3/3</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Proyek 2: Magang -->
-      <div class="proj-card">
-        <div class="proj-header">
-          <div class="proj-title">Instalasi Kelistrikan Residensial</div>
-          <div class="proj-badge">MAGANG</div>
-        </div>
-        <p class="proj-desc">
-          Proyek instalasi kelistrikan rumah bersama PT Karya Mitra Sejahtera, meliputi wiring
-          distribusi daya, pemasangan panel listrik, dan instalasi KWH meter sesuai standar PLN.
-        </p>
-        <div class="proj-tags">
-          <span class="tag">Instalasi Listrik</span><span class="tag">KWH Meter</span>
-          <span class="tag">Panel Listrik</span><span class="tag">Standar PLN</span>
-        </div>
-        <!--
-          Foto magang (sama dengan di timeline, reuse file yang sama)
-        -->
-        <div class="proj-foto-grid">
-          <div class="proj-foto-thumb" onclick="openLB('foto_magang1.png')">
-            <img src="foto_magang1.png" alt="Foto Magang 1"><div class="proj-foto-num">1/3</div>
-          </div>
-          <div class="proj-foto-thumb" onclick="openLB('foto_magang2.png')">
-            <img src="foto_magang2.png" alt="Foto Magang 2"><div class="proj-foto-num">2/3</div>
-          </div>
-          <div class="proj-foto-thumb" onclick="openLB('foto_magang3.jpg')">
-            <img src="foto_magang3.jpg" alt="Foto Magang 3"><div class="proj-foto-num">3/3</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Proyek 3: Water Level -->
-      <div class="proj-card">
-        <div class="proj-header">
-          <div class="proj-title">Water Level Control Berbasis PID</div>
-          <div class="proj-badge">TUGAS AKHIR SEMESTER</div>
-        </div>
-        <p class="proj-desc">
-          Merancang sistem kontrol ketinggian air secara otomatis menggunakan Arduino dan sensor
-          VL6180X dengan metode PID menggunakan Matlab Simulink.
-        </p>
-        <div class="proj-tags">
-          <span class="tag">Arduino Uno</span><span class="tag">Arduino Nano</span>
-          <span class="tag">Matlab</span><span class="tag">Sensor VL6180X</span>
-          <span class="tag">PID Control</span>
-        </div>
-        <!--
-          Foto Water Level — upload: foto_wlc1.jpg, foto_wlc2.jpg
-          Kalau belum ada, hapus blok proj-foto-grid ini.
-        -->
-        <div class="proj-foto-grid">
-          <div class="proj-foto-thumb" onclick="openLB('foto_wlc1.jpg')">
-            <img src="foto_wlc1.jpg" alt="Foto WLC 1"><div class="proj-foto-num">1/2</div>
-          </div>
-          <div class="proj-foto-thumb" onclick="openLB('foto_wlc2.jpg')">
-            <img src="foto_wlc2.jpg" alt="Foto WLC 2"><div class="proj-foto-num">2/2</div>
-          </div>
-        </div>
-      </div>
-
+<section id="contact" class="reveal">
+  <h2 class="section-title">Hubungi <span>Saya</span></h2>
+  <div class="contact-wrapper">
+    <div class="contact-info">
+      <h3>Mari Berkolaborasi!</h3>
+      <p>Jika Anda tertarik dengan keahlian saya atau ingin mendiskusikan peluang proyek di bidang teknik elektronika dan otomasi sirkuit, silakan hubungi saluran berikut:</p>
     </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="reveal">
-    <div class="sec-label">// 05. Kontak</div>
-    <h2 class="sec-title">Hubungi Saya</h2>
-    <p class="contact-intro">
-      Terbuka untuk peluang magang, kolaborasi proyek, atau diskusi seputar dunia elektro dan otomasi industri.
-    </p>
-    <div class="contact-grid">
-      <a href="mailto:gustiirul14@gmail.com" class="contact-item">
-        <div class="contact-icon"><i class="ti ti-mail"></i></div>
-        <div><div class="contact-label">// EMAIL</div><div class="contact-val">gustiirul14@gmail.com</div></div>
+    <div class="contact-links">
+      <a href="mailto:email-kamu@domain.com" class="contact-item">
+        <i class="ti ti-mail"></i>
+        <span>email-kamu@domain.com</span>
       </a>
-      <a href="https://wa.me/6282256913282" target="_blank" rel="noopener" class="contact-item">
-        <div class="contact-icon"><i class="ti ti-brand-whatsapp"></i></div>
-        <div><div class="contact-label">// WHATSAPP</div><div class="contact-val">0822-5691-3282</div></div>
+      <a href="https://linkedin.com/in/username-kamu" target="_blank" class="contact-item">
+        <i class="ti ti-brand-linkedin"></i>
+        <span>LinkedIn Profile</span>
       </a>
-      <div class="contact-item">
-        <div class="contact-icon"><i class="ti ti-map-pin"></i></div>
-        <div><div class="contact-label">// LOKASI</div><div class="contact-val">Semarang, Jawa Tengah</div></div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon"><i class="ti ti-school"></i></div>
-        <div><div class="contact-label">// KAMPUS</div><div class="contact-val">Politeknik Negeri Semarang</div></div>
-      </div>
     </div>
   </div>
 </section>
 
-<footer>
-  <p>© 2025 Gusti Muhammad Hairul Alim · D4 Teknologi Rekayasa Elektronika · Politeknik Negeri Semarang</p>
-</footer>
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()"><i class="ti ti-x"></i></button>
+  <img src="" alt="Enlarged Preview" class="lightbox-content" id="lightboxImg">
+</div>
 
 <script>
-// ===== SKILLS DATA =====
-const skills = [
-  {icon:'ti-cpu',        name:'PLC Programming',  desc:'Ladder diagram, FBD, kontrol industri', pct:75},
-  {icon:'ti-bolt',       name:'Instalasi Listrik', desc:'1 fase & 3 fase, panel, wiring, PLN',   pct:85},
-  {icon:'ti-settings',   name:'Motor & VFD',       desc:'Pengendalian motor 3 fase + drive',      pct:80},
-  {icon:'ti-code',       name:'Python (Dasar)',     desc:'Scripting untuk AI & otomasi',          pct:50},
-  {icon:'ti-chart-line', name:'Instrumentasi',     desc:'Sensor, transduser, kalibrasi',         pct:65},
-  {icon:'ti-circuit-resistor',name:'Wiring Panel', desc:'Panel kontrol, MCC, power distribution',pct:80},
-];
-const grid = document.getElementById('skillsGrid');
-skills.forEach(s => {
-  const c = document.createElement('div');
-  c.className = 'skill-card';
-  c.innerHTML = `<div class="skill-icon"><i class="ti ${s.icon}"></i></div>
-    <div class="skill-name">${s.name}</div>
-    <div class="skill-desc">${s.desc}</div>
-    <div class="skill-bar"><div class="skill-fill" data-pct="${s.pct}"></div></div>`;
-  grid.appendChild(c);
+// REQ 4: OTOMATIS BUKA HALAMAN PERTAMA (TOP) SETIAP MASUK LINK GITHUB
+window.addEventListener('beforeunload', () => {
+  window.scrollTo(0, 0);
+});
+if (window.location.hash) {
+  window.location.hash = '';
+}
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 50);
 });
 
-// ===== NAMETAG DRAG + SPRING BACK =====
-const drag = document.getElementById('nametagDraggable');
-const card = document.getElementById('nametag');
-let down=false, sx=0, sy=0, tx=0, ty=0, vx=0, vy=0, lx=0, ly=0, raf=null;
+// INTERACTIVE DRAGGABLE & LANYARD PHYSICS FOR NAMETAG
+const draggable = document.getElementById('dragTag');
+const nametag = document.getElementById('tiltTag');
+const lanyard = document.getElementById('lanyardNode');
 
-function setPos(x,y,rx,ry){
-  drag.style.transform=`translate(${x}px,${y}px)`;
-  card.style.transform=`perspective(600px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+let isDragging = false;
+let currentX = 0;
+let currentY = 0;
+let initialX = 0;
+let initialY = 0;
+let xOffset = 0;
+let yOffset = 0;
+
+function updateLanyardLine() {
+  if(!lanyard || !draggable) return;
+  const lanyardRect = lanyard.getBoundingClientRect();
+  const tagRect = draggable.getBoundingClientRect();
+  
+  const startX = lanyardRect.left + (lanyardRect.width / 2);
+  const startY = lanyardRect.top;
+  const endX = tagRect.left + (tagRect.width / 2);
+  const endY = tagRect.top + 20;
+  
+  const distance = Math.hypot(endX - startX, endY - startY);
+  const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
+  
+  lanyard.style.height = `${distance}px`;
+  lanyard.style.transform = `translateX(-50%) rotate(${angle - 90}deg)`;
 }
 
-drag.addEventListener('mousedown',e=>{
-  if(e.button!==0)return;
-  down=true;cancelAnimationFrame(raf);
-  sx=e.clientX-tx;sy=e.clientY-ty;lx=e.clientX;ly=e.clientY;
-  card.style.transition='none';e.preventDefault();
-});
-drag.addEventListener('touchstart',e=>{
-  down=true;cancelAnimationFrame(raf);
-  const t=e.touches[0];
-  sx=t.clientX-tx;sy=t.clientY-ty;lx=t.clientX;ly=t.clientY;
-  card.style.transition='none';
-},{passive:false});
+function onPointerDown(e) {
+  if (e.type === "touchstart") {
+    initialX = e.touches[0].clientX - xOffset;
+    initialY = e.touches[0].clientY - yOffset;
+  } else {
+    initialX = e.clientX - xOffset;
+    initialY = e.clientY - yOffset;
+  }
+  isDragging = true;
+  nametag.style.transition = 'none';
+}
 
-window.addEventListener('mousemove',e=>{
-  if(!down){
-    // hover tilt tanpa drag
-    const r=card.getBoundingClientRect();
-    const rx=((e.clientY-r.top-r.height/2)/(r.height/2))*-10;
-    const ry=((e.clientX-r.left-r.width/2)/(r.width/2))*10;
-    card.style.transition='transform .1s';
-    card.style.transform=`perspective(600px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+function onPointerMove(e) {
+  if (!isDragging) {
+    // 3D Tilt Effect on Hover when not dragging
+    const rect = draggable.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    
+    const x = clientX - rect.left;
+    const y = clientY - rect.top;
+    const xc = rect.width / 2;
+    const yc = rect.height / 2;
+    const angleX = (yc - y) / 10;
+    const angleY = (x - xc) / 10;
+    
+    nametag.style.transform = `perspective(600px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+    updateLanyardLine();
     return;
   }
-  vx=e.clientX-lx;vy=e.clientY-ly;lx=e.clientX;ly=e.clientY;
-  tx=e.clientX-sx;ty=e.clientY-sy;
-  setPos(tx,ty,Math.max(-25,Math.min(25,-vy*2)),Math.max(-25,Math.min(25,vx*2)));
-});
-window.addEventListener('touchmove',e=>{
-  if(!down)return;
-  const t=e.touches[0];
-  vx=t.clientX-lx;vy=t.clientY-ly;lx=t.clientX;ly=t.clientY;
-  tx=t.clientX-sx;ty=t.clientY-sy;
-  setPos(tx,ty,Math.max(-22,Math.min(22,-vy*2)),Math.max(-22,Math.min(22,vx*2)));
-},{passive:true});
 
-function release(){
-  if(!down)return;down=false;
-  // spring physics balik ke 0,0
-  let x=tx,y=ty,cvx=vx*5,cvy=vy*5;
-  const K=0.18,D=0.72;
-  function anim(){
-    cvx=(cvx-x*K)*D;cvy=(cvy-y*K)*D;
-    x+=cvx;y+=cvy;
-    const rx=Math.max(-18,Math.min(18,-cvy*1.4));
-    const ry=Math.max(-18,Math.min(18,cvx*1.4));
-    card.style.transition='none';
-    drag.style.transform=`translate(${x}px,${y}px)`;
-    card.style.transform=`perspective(600px) rotateX(${rx}deg) rotateY(${ry}deg)`;
-    tx=x;ty=y;
-    if(Math.abs(x)<0.4&&Math.abs(y)<0.4&&Math.abs(cvx)<0.4&&Math.abs(cvy)<0.4){
-      drag.style.transform='translate(0,0)';
-      card.style.transform='perspective(600px) rotateX(0deg) rotateY(0deg)';
-      tx=0;ty=0;return;
-    }
-    raf=requestAnimationFrame(anim);
+  e.preventDefault();
+  
+  if (e.type === "touchmove") {
+    currentX = e.touches[0].clientX - initialX;
+    currentY = e.touches[0].clientY - initialY;
+  } else {
+    currentX = e.clientX - initialX;
+    currentY = e.clientY - initialY;
   }
-  raf=requestAnimationFrame(anim);
+
+  xOffset = currentX;
+  yOffset = currentY;
+
+  // Batasi jangkauan tarik agar tetap presisi
+  xOffset = Math.max(-200, Math.min(200, xOffset));
+  yOffset = Math.max(-50, Math.min(250, yOffset));
+
+  draggable.style.transform = `translate3d(${xOffset}px, ${yOffset}px, 0)`;
+  
+  // Efek ayunan dinamis saat ditarik
+  nametag.style.transform = `perspective(600px) rotateY(${xOffset * 0.1}deg) rotateX(${-yOffset * 0.05}deg)`;
+  updateLanyardLine();
 }
-window.addEventListener('mouseup',release);
-window.addEventListener('touchend',release);
-drag.addEventListener('mouseleave',()=>{
-  if(down)return;
-  card.style.transition='transform .4s ease';
-  card.style.transform='perspective(600px) rotateX(0deg) rotateY(0deg)';
+
+function onPointerUp() {
+  if (!isDragging) return;
+  isDragging = false;
+  
+  // Kembalikan nametag ke posisi semula dengan efek membal (smooth bounce back)
+  nametag.style.transition = 'transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.5)';
+  draggable.style.transition = 'transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.5)';
+  
+  xOffset = 0; yOffset = 0;
+  draggable.style.transform = `translate3d(0, 0, 0)`;
+  nametag.style.transform = `perspective(600px) rotateX(0deg) rotateY(0deg)`;
+  
+  setTimeout(() => {
+    draggable.style.transition = 'none';
+    updateLanyardLine();
+  }, 600);
+}
+
+// Event Listeners untuk Drag & Tilt
+draggable.addEventListener('mousedown', onPointerDown);
+window.addEventListener('mousemove', onPointerMove);
+window.addEventListener('mouseup', onPointerUp);
+
+draggable.addEventListener('touchstart', onPointerDown, {passive:false});
+window.addEventListener('touchmove', onPointerMove, {passive:false});
+window.addEventListener('touchend', onPointerUp);
+
+draggable.addEventListener('mouseleave', () => {
+  if (isDragging) return;
+  nametag.style.transition = 'transform .5s ease';
+  nametag.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg)';
 });
 
-// ===== LIGHTBOX =====
-function openLB(src){
-  document.getElementById('lbImg').src=src;
+// LIGHTBOX FUNCTIONALITY
+function openLightbox(src){
+  if(!src || src.includes('#')) return;
+  document.getElementById('lightboxImg').src = src;
   document.getElementById('lightbox').classList.add('open');
 }
-function closeLB(){document.getElementById('lightbox').classList.remove('open');}
-document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLB();});
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+}
+document.getElementById('lightbox').addEventListener('click', function(e){
+  if(e.target === this || e.target.classList.contains('lightbox-close') || e.target.closest('.lightbox-close')) {
+    closeLightbox();
+  }
+});
 
-// ===== SCROLL REVEAL =====
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
+// SCROLL REVEAL (INTERSECTION OBSERVER)
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
       e.target.classList.add('visible');
-      e.target.querySelectorAll('.skill-fill').forEach(b=>b.style.width=b.dataset.pct+'%');
     }
   });
-},{threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+}, {threshold: 0.08});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// ===== HAMBURGER =====
-document.getElementById('hamburger').addEventListener('click',()=>{
+// HAMBURGER MENU RESPONSE
+document.getElementById('hamburger').addEventListener('click', () => {
   document.getElementById('navLinks').classList.toggle('open');
 });
-document.querySelectorAll('.nav-links a').forEach(a=>{
-  a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open'));
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
 });
+
+// Inisialisasi posisi lanyard awal
+setInterval(updateLanyardLine, 100);
 </script>
 </body>
 </html>
