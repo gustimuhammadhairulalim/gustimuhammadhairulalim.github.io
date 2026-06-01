@@ -9,26 +9,21 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#060a12;--bg2:#0c1220;--bg3:#0f1828;
-  --accent:#00c8ff;--accent2:#0066ff;--gold:#e8b84b;
-  --text:#dde6f5;--muted:#6b7fa3;--border:rgba(0,200,255,0.12);
-  --card:rgba(12,18,32,0.85);--glow:rgba(0,200,255,0.06);
-}
+:root{\n  --bg:#060a12;--bg2:#0c1220;--bg3:#0f1828;\n  --accent:#00c8ff;--accent2:#0066ff;--gold:#e8b84b;\n  --text:#dde6f5;--muted:#6b7fa3;--border:rgba(0,200,255,0.12);\n  --card:rgba(12,18,32,0.85);--glow:rgba(0,200,255,0.06);\n}
 html{scroll-behavior:smooth;font-family:'Outfit',sans-serif;background-color:var(--bg);color:var(--text);overflow-x:hidden}
 
-/* ===== REQ 5: BACKGROUND UTAMA SEAMLESS UNTUK SECTION 1 SAMPAI 5 ===== */
-.global-circuit-bg {
-  position: fixed;
+/* ===== REQ 5: BACKGROUND SIRKUIT SEAMLESS UTK SECTION 1 SAMPAI 5 ===== */
+.circuit-bg {
+  position: fixed; /* Membuat background menetap saat di-scroll */
   top: 0; left: 0; width: 100vw; height: 100vh;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.25;
+  opacity: 0.25; /* Transparansi agar teks tetap mudah dibaca */
 }
 
-/* ===== NAVBAR ===== */
+/* NAVBAR */
 nav{position:fixed;top:0;left:0;width:100%;z-index:100;backdrop-filter:blur(12px);border-bottom:1px solid var(--border);background:rgba(6,10,18,0.7)}
-.nav-container{max-width:1200px;margin:0 auto;padding:1.2rem 2rem;display:flex;justify-content:between;align-items:center;display: flex; justify-content: space-between;}
+.nav-container{max-width:1200px;margin:0 auto;padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center}
 .logo{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.3rem;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:8px}
 .nav-links{display:flex;gap:2rem;list-style:none}
 .nav-links a{color:var(--text);text-decoration:none;font-weight:500;transition:.3s;font-size:.95rem;position:relative;padding:0.3rem 0}
@@ -37,13 +32,13 @@ nav{position:fixed;top:0;left:0;width:100%;z-index:100;backdrop-filter:blur(12px
 .nav-links a:hover::after{width:100%}
 #hamburger{display:none;background:none;border:none;color:var(--text);font-size:1.6rem;cursor:pointer}
 
-/* ===== COMMON SECTION STYLES ===== */
+/* COMMON SECTION STYLES */
 section{padding:100px 2rem 80px;max-width:1200px;margin:0 auto;position:relative;min-height:90vh;display:flex;flex-direction:column;justify-content:center}
 .section-title{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;margin-bottom:3.5rem;position:relative;display:inline-block;letter-spacing:-0.5px}
 .section-title span{color:var(--accent)}
 .section-title::after{content:'';position:absolute;bottom:-10px;left:0;width:60px;height:4px;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px}
 
-/* ===== REQ 1 & 4: HERO SECTION + FOTO TAMPILAN AWAL ===== */
+/* HERO SECTION */
 .hero-wrapper{display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;align-items:center;width:100%}
 .hero-info{display:flex;flex-direction:column;gap:1.5rem}
 .badge{background:rgba(0,200,255,0.08);border:1px solid var(--border);color:var(--accent);padding:0.5rem 1.2rem;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:0.85rem;width:fit-content;display:flex;align-items:center;gap:8px}
@@ -51,34 +46,34 @@ section{padding:100px 2rem 80px;max-width:1200px;margin:0 auto;position:relative
 .hero-info h1 span{background:linear-gradient(135deg,var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero-info p{color:var(--muted);font-size:1.1rem;line-height:1.6;max-width:540px}
 
-/* Kontainer Foto Profil Tampilan Awal (Kiri) */
-.profile-display {
+/* REQ 1: KOTAK FOTO TAMPILAN AWAL */
+.hero-profile-display {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  margin-top: 1rem;
+  gap: 1.2rem;
+  margin-top: 0.5rem;
 }
-.profile-img-frame {
-  width: 90px; height: 90px;
+.hero-profile-frame {
+  width: 75px; height: 75px;
   border-radius: 50%;
   border: 2px solid var(--accent);
-  padding: 4px;
+  padding: 3px;
   background: var(--bg2);
-  box-shadow: 0 0 20px rgba(0,200,255,0.2);
   overflow: hidden;
   flex-shrink: 0;
+  box-shadow: 0 0 15px rgba(0,200,255,0.25);
 }
-.profile-img-frame img {
+.hero-profile-frame img {
   width: 100%; height: 100%;
   object-fit: cover;
   border-radius: 50%;
 }
-.profile-text-meta h4 { font-size: 1.1rem; font-weight: 600; color: var(--text); }
-.profile-text-meta p { font-size: 0.85rem; color: var(--muted); }
+.hero-profile-text h4 { font-size: 1.05rem; font-weight: 600; color: var(--text); }
+.hero-profile-text p { font-size: 0.85rem; color: var(--muted); }
 
-/* REQ 4: ANIMASI JATOH ID CARD / NAMETAG (Kanan) */
+/* VISUAL & REQ 4: NAMETAG DRAGGABLE DENGAN ANIMASI JATOH */
 .hero-visual{display:flex;justify-content:center;align-items:flex-start;position:relative;height:550px}
-.lanyard-gateway{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:4px;height:120px;background:linear-gradient(to bottom, var(--accent2), rgba(0,200,255,0.4));z-index:2;transform-origin:top}
+.lanyard-line{position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:4px;height:140px;background:linear-gradient(to bottom, var(--accent2), rgba(0,200,255,0.4));z-index:2;transform-origin:top}
 
 .draggable-nametag {
   position: absolute;
@@ -86,12 +81,13 @@ section{padding:100px 2rem 80px;max-width:1200px;margin:0 auto;position:relative
   cursor: grab;
   z-index: 5;
   touch-action: none;
+  /* REQ 4: Efek dropIn animasi jatoh saat pertama masuk */
   animation: dropIn 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 .draggable-nametag:active { cursor: grabbing; }
 
 @keyframes dropIn {
-  0% { transform: translateY(-500px) rotate(-15deg); opacity: 0; }
+  0% { transform: translateY(-600px) rotate(-20deg); opacity: 0; }
   100% { transform: translateY(0) rotate(0deg); opacity: 1; }
 }
 
@@ -122,12 +118,12 @@ section{padding:100px 2rem 80px;max-width:1200px;margin:0 auto;position:relative
 .nametag-sub { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--accent); margin-bottom: 1.5rem; }
 .nametag-barcode { width: 100%; margin-top: auto; opacity: 0.7; filter: invert(1); height: 35px; object-fit: contain; }
 
-/* ===== ABOUT SECTION ===== */
+/* ABOUT SECTION */
 .about-grid{display:grid;grid-template-columns:1fr;gap:2.5rem}
 .about-box{background:var(--card);border:1px solid var(--border);padding:2.5rem;border-radius:20px;backdrop-filter:blur(10px)}
 .about-box p{color:var(--text);font-size:1.05rem;line-height:1.7;margin-bottom:1.5rem}
 
-/* ===== SKILLS SECTION ===== */
+/* SKILLS SECTION */
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
 .skill-category{background:var(--card);border:1px solid var(--border);padding:2rem;border-radius:20px;backdrop-filter:blur(10px);transition:.3s}
 .skill-category:hover{border-color:rgba(0,200,255,0.3);transform:translateY(-5px)}
@@ -137,7 +133,7 @@ section{padding:100px 2rem 80px;max-width:1200px;margin:0 auto;position:relative
 .skill-badge:hover{background:rgba(0,200,255,0.08);border-color:var(--accent);color:#fff}
 .skill-badge i{color:var(--accent);font-size:1.1rem}
 
-/* ===== REQ 2: EXPERIENCES SECTION (1 FOTO SERTIFIKAT) ===== */
+/* TIMELINE (REQ 2: GAYA WADAH 1 SERTIFIKAT) */
 .timeline{position:relative;margin-left:1.5rem;border-left:2px solid var(--border);display:flex;flex-direction:column;gap:3rem}
 .timeline-item{position:relative;padding-left:2.5rem}
 .timeline-dot{position:absolute;left:-9px;top:4px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--accent);box-shadow:0 0 10px var(--accent)}
@@ -147,26 +143,25 @@ section{padding:100px 2rem 80px;max-width:1200px;margin:0 auto;position:relative
 .timeline-content h4{font-size:0.95rem;color:var(--muted);margin-bottom:1rem;font-weight:500}
 .timeline-content p{color:var(--muted);font-size:0.95rem;line-height:1.6;margin-bottom:1.5rem}
 
-/* Desain Wadah 1 Sertifikat Riwayat Pengalaman */
-.cert-single-wrapper {
-  width: 100%; max-width: 450px;
+.cert-preview-frame {
+  width: 100%; max-width: 400px;
   border-radius: 12px; overflow: hidden;
   border: 1px solid rgba(0,200,255,0.15);
   background: rgba(0,0,0,0.2);
-  cursor: pointer; transition: 0.3s ease;
+  cursor: pointer; transition: 0.3s;
   position: relative;
 }
-.cert-single-wrapper::after {
-  content: '\eb11  Lihat Sertifikat'; font-family: 'tabler-icons';
+.cert-preview-frame::after {
+  content: '\eb11  Buka Sertifikat'; font-family: 'tabler-icons';
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(6,10,18,0.75); display: flex; align-items: center; justify-content: center;
-  color: var(--accent); font-weight: 500; font-size: 0.95rem; opacity: 0; transition: 0.3s;
+  background: rgba(6,10,18,0.8); display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-weight: 500; opacity: 0; transition: 0.3s;
 }
-.cert-single-wrapper:hover::after { opacity: 1; }
-.cert-single-wrapper:hover { transform: scale(1.02); border-color: var(--accent); }
-.cert-single-wrapper img { width: 100%; height: auto; display: block; object-fit: cover; }
+.cert-preview-frame:hover::after { opacity: 1; }
+.cert-preview-frame:hover { transform: scale(1.02); border-color: var(--accent); }
+.cert-preview-frame img { width: 100%; height: auto; display: block; }
 
-/* ===== REQ 3: PROJECTS SECTION (2-3 GAMBAR KECIL BUKTI) ===== */
+/* PROJECTS (REQ 3: MINI GALLERY BUKTI) */
 .project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:2.5rem}
 .project-card{background:var(--card);border:1px solid var(--border);border-radius:25px;overflow:hidden;backdrop-filter:blur(10px);display:flex;flex-direction:column;transition:.3s}
 .project-card:hover{border-color:rgba(0,200,255,0.3);transform:translateY(-5px)}
@@ -176,32 +171,31 @@ section{padding:100px 2rem 80px;max-width:1200px;margin:0 auto;position:relative
 .project-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:auto;padding-top:1rem}
 .project-tags span{background:rgba(0,200,255,0.05);color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:0.75rem;padding:0.3rem 0.8rem;border-radius:6px;border:1px solid rgba(0,200,255,0.1)}
 
-/* Desain Mini Grid Gallery untuk 2-3 Gambar Bukti Proyek */
 .project-evidence-gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 8px;
   padding: 0 2rem 2rem;
 }
-.evidence-thumb {
+.evidence-item {
   aspect-ratio: 4/3; border-radius: 8px; overflow: hidden;
   border: 1px solid rgba(221,230,245,0.1); background: rgba(0,0,0,0.3);
   cursor: pointer; position: relative; transition: 0.2s;
 }
-.evidence-thumb:hover { border-color: var(--accent); transform: scale(1.05); }
-.evidence-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.evidence-item:hover { border-color: var(--accent); transform: scale(1.05); }
+.evidence-item img { width: 100%; height: 100%; object-fit: cover; }
 
-/* ===== CONTACT SECTION ===== */
+/* CONTACT SECTION */
 .contact-wrapper{background:var(--card);border:1px solid var(--border);border-radius:25px;padding:3rem;backdrop-filter:blur(10px);display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
 .contact-info{display:flex;flex-direction:column;gap:1.5rem}
 .contact-info h3{font-size:1.8rem;font-weight:700}
-.contact-info p{color:var(--muted);line-height:1.6}
+.contact-info p{line-height:1.6;color:var(--muted)}
 .contact-links{display:flex;flex-direction:column;gap:1.2rem}
 .contact-item{display:flex;align-items:center;gap:15px;color:var(--text);text-decoration:none;font-size:1.05rem;transition:.2s;padding:0.5rem;border-radius:12px;border:1px solid transparent}
 .contact-item:hover{background:rgba(0,200,255,0.04);border-color:var(--border);color:var(--accent)}
 .contact-item i{width:45px;height:45px;background:rgba(0,200,255,0.06);border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--accent)}
 
-/* ===== LIGHTBOX ===== */
+/* LIGHTBOX MODAL */
 .lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(4,6,10,0.95);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.3s;backdrop-filter:blur(10px)}
 .lightbox.open{opacity:1;pointer-events:all}
 .lightbox-content{max-width:85%;max-height:85%;border-radius:12px;box-shadow:0 25px 50px rgba(0,0,0,0.5);border:1px solid rgba(221,230,245,0.1);transform:scale(0.95);transition:.3s}
@@ -209,15 +203,15 @@ section{padding:100px 2rem 80px;max-width:1200px;margin:0 auto;position:relative
 .lightbox-close{position:absolute;top:2rem;right:2rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;opacity:0.7;transition:.2s}
 .lightbox-close:hover{opacity:1;color:var(--accent)}
 
-/* ===== SCROLL REVEAL ===== */
+/* SCROLL REVEAL */
 .reveal{opacity:0;transform:translateY(30px);transition:all 0.8s cubic-bezier(0.16, 1, 0.3, 1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
-/* ===== RESPONSIVE STYLES ===== */
+/* RESPONSIVE STYLES */
 @media (max-width: 992px){
   .hero-wrapper{grid-template-columns:1fr;gap:3rem;text-align:center}
   .hero-info{align-items:center}
-  .profile-display{justify-content:center}
+  .hero-profile-display{justify-content:center}
   .hero-visual{height:480px}
   .contact-wrapper{grid-template-columns:1fr;gap:2.5rem}
 }
@@ -226,28 +220,28 @@ section{padding:100px 2rem 80px;max-width:1200px;margin:0 auto;position:relative
   .nav-links{position:fixed;top:73px;left:-100%;width:100%;height:calc(100vh - 73px);background:var(--bg);flex-direction:column;align-items:center;padding-top:3rem;transition:.4s ease;border-top:1px solid var(--border)}
   .nav-links.open{left:0}
   .project-evidence-gallery{grid-template-columns:repeat(3, 1fr);padding:0 1.2rem 1.5rem}
-  .contact-wrapper{padding:2rem 1.5rem}
 }
 </style>
 </head>
 <body>
 
-<svg class="global-circuit-bg" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
+<svg class="circuit-bg" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00c8ff" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#0066ff" stop-opacity="0.2"/>
+    <linearGradient id="circuitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00c8ff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#0066ff" stop-opacity="0.1"/>
     </linearGradient>
+    <animation id="pulse">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite" />
+    </animation>
   </defs>
-  <path d="M100,150 L300,150 L400,250 L400,450 L300,550 L100,550" fill="none" stroke="url(#lineGrad)" stroke-width="1.5" />
-  <path d="M1300,150 L1100,150 L1000,250 L1000,600 L1100,700 L1300,700" fill="none" stroke="url(#lineGrad)" stroke-width="1.5" />
-  <path d="M500,800 L700,600 L900,800" fill="none" stroke="url(#lineGrad)" stroke-width="1.5" />
+  <path d="M100,150 L300,150 L400,250 L400,500 L350,550 L150,550 L100,600 L100,800" fill="none" stroke="url(#circuitGrad)" stroke-width="1.5" />
+  <path d="M1300,100 L1150,100 L1050,200 L1050,550 L1150,650 L1300,650" fill="none" stroke="url(#circuitGrad)" stroke-width="1.5" />
+  <path d="M600,850 L700,750 L850,750 L900,800" fill="none" stroke="url(#circuitGrad)" stroke-width="1.5" />
   <circle cx="100" cy="150" r="4" fill="#00c8ff" />
   <circle cx="400" cy="250" r="3" fill="#e8b84b" />
-  <circle cx="100" cy="550" r="4" fill="#00c8ff" />
-  <circle cx="1300" cy="150" r="4" fill="#00c8ff" />
-  <circle cx="1000" cy="600" r="3" fill="#e8b84b" />
-  <circle cx="1300" cy="700" r="4" fill="#00c8ff" />
+  <circle cx="1300" cy="100" r="4" fill="#00c8ff" />
+  <circle cx="1050" cy="550" r="3" fill="#e8b84b" />
 </svg>
 
 <nav>
@@ -272,11 +266,11 @@ section{padding:100px 2rem 80px;max-width:1200px;margin:0 auto;position:relative
       <h1>Hai, Saya <span>Gusti Muhammad</span></h1>
       <p>Mahasiswa D4 Teknologi Rekayasa Elektronika di Politeknik Negeri Semarang. Fokus pada pengembangan sistem tertanam, otomasi sirkuit, dan kendali cerdas.</p>
       
-      <div class="profile-display">
-        <div class="profile-img-frame">
-          <img src="foto-profil-utama.jpg" alt="Gusti Muhammad Hairul Alim">
+      <div class="hero-profile-display">
+        <div class="hero-profile-frame">
+          <img src="foto-tampilan-awal.jpg" alt="Gusti Muhammad Profile">
         </div>
-        <div class="profile-text-meta">
+        <div class="hero-profile-text">
           <h4>Gusti Muhammad Hairul Alim</h4>
           <p>D4 Teknologi Rekayasa Elektronika — POLINES</p>
         </div>
@@ -284,18 +278,18 @@ section{padding:100px 2rem 80px;max-width:1200px;margin:0 auto;position:relative
     </div>
     
     <div class="hero-visual">
-      <div class="lanyard-gateway" id="lanyardNode"></div>
+      <div class="lanyard-line" id="lanyardNode"></div>
       <div class="draggable-nametag" id="dragTag">
         <div class="nametag-card" id="tiltTag">
           <div class="nametag-header">
             <div class="nametag-logo"><i class="ti ti-school"></i> POLINES</div>
           </div>
           <div class="nametag-holder">
-            <img src="FotoProfil.jpeg" alt="ID Photo">
+            <img src="foto-idcard.jpg" alt="ID Photo">
           </div>
           <div class="nametag-name">Gusti Muhammad H.A.</div>
           <div class="nametag-sub">STUDENT ID • ELECTRONICS</div>
-          <img src="https://cdn.jsdelivr.net/jsbarcode/3.6.0/barcodes/JsBarcode.all.min.js" alt="Barcode Placeholder" class="nametag-barcode" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 30\'><rect width=\'100\' height=\'30\' fill=\'white\'/><line x1=\'10\' y1=\'5\' x2=\'10\' y2=\'25\' stroke=\'black\' stroke-width=\'2\'/><line x1=\'15\' y1=\'5\' x2=\'15\' y2=\'25\' stroke=\'black\' stroke-width=\'1\'/><line x1=\'20\' y1=\'5\' x2=\'20\' y2=\'25\' stroke=\'black\' stroke-width=\'3\'/><line x1=\'28\' y1=\'5\' x2=\'28\' y2=\'25\' stroke=\'black\' stroke-width=\'1\'/><line x1=\'35\' y1=\'5\' x2=\'35\' y2=\'25\' stroke=\'black\' stroke-width=\'2\'/><line x1=\'45\' y1=\'5\' x2=\'45\' y2=\'25\' stroke=\'black\' stroke-width=\'4\'/><line x1=\'55\' y1=\'5\' x2=\'55\' y2=\'25\' stroke=\'black\' stroke-width=\'1\'/><line x1=\'65\' y1=\'5\' x2=\'65\' y2=\'25\' stroke=\'black\' stroke-width=\'2\'/><line x1=\'72\' y1=\'5\' x2=\'72\' y2=\'25\' stroke=\'black\' stroke-width=\'3\'/><line x1=\'85\' y1=\'5\' x2=\'85\' y2=\'25\' stroke=\'black\' stroke-width=\'1\'/></svg>'">
+          <img src="https://cdn.jsdelivr.net/jsbarcode/3.6.0/barcodes/JsBarcode.all.min.js" alt="Barcode" class="nametag-barcode" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 30\'><rect width=\'100\' height=\'30\' fill=\'white\'/><line x1=\'10\' y1=\'5\' x2=\'10\' y2=\'25\' stroke=\'black\' stroke-width=\'2\'/><line x1=\'15\' y1=\'5\' x2=\'15\' y2=\'25\' stroke=\'black\' stroke-width=\'1\'/><line x1=\'20\' y1=\'5\' x2=\'20\' y2=\'25\' stroke=\'black\' stroke-width=\'3\'/><line x1=\'30\' y1=\'5\' x2=\'30\' y2=\'25\' stroke=\'black\' stroke-width=\'1\'/><line x1=\'40\' y1=\'5\' x2=\'40\' y2=\'25\' stroke=\'black\' stroke-width=\'2\'/><line x1=\'50\' y1=\'5\' x2=\'50\' y2=\'25\' stroke=\'black\' stroke-width=\'4\'/></svg>'">
         </div>
       </div>
     </div>
@@ -347,22 +341,8 @@ section{padding:100px 2rem 80px;max-width:1200px;margin:0 auto;position:relative
         <h4>Politeknik Negeri Semarang</h4>
         <p>Bertanggung jawab dalam pengelolaan program kerja skala kampus, manajemen tim, serta mengoordinasikan aspek teknis operasional dalam kepengurusan.</p>
         
-        <div class="cert-single-wrapper" onclick="openLightbox(this.querySelector('img').src)">
-          <img src="Sertifikat Staff Muda Gusti Muhammad Hairul Alim_page-0001.jpg" alt="Sertifikat Hasil Pengalaman BEM">
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <span class="time-tag">2025</span>
-        <h3>Asisten Laboratorium Kendali & Otomasi</h3>
-        <h4>Politeknik Negeri Semarang</h4>
-        <p>Membantu membimbing mahasiswa dalam praktikum perancangan sirkuit kendali motor relai, pemrograman dasar PLC, dan kalibrasi sensor industri.</p>
-        
-        <div class="cert-single-wrapper" onclick="openLightbox(this.querySelector('img').src)">
-          <img src="sertifikat-asisten-lab.jpg" alt="Sertifikat Asisten Lab">
+        <div class="cert-preview-frame" onclick="openLightbox(this.querySelector('img').src)">
+          <img src="sertifikat-bem.jpg" alt="Sertifikat Hasil Pengalaman BEM">
         </div>
       </div>
     </div>
@@ -384,36 +364,14 @@ section{padding:100px 2rem 80px;max-width:1200px;margin:0 auto;position:relative
       </div>
       
       <div class="project-evidence-gallery">
-        <div class="evidence-thumb" onclick="openLightbox(this.querySelector('img').src)">
-          <img src="FotoMagang1.jpeg" alt="Bukti Magang 1">
+        <div class="evidence-item" onclick="openLightbox(this.querySelector('img').src)">
+          <img src="foto-magang-1.jpg" alt="Bukti Proyek Magang 1">
         </div>
-        <div class="evidence-thumb" onclick="openLightbox(this.querySelector('img').src)">
-          <img src="FotoMagang2.jpeg" alt="Bukti Magang 2">
+        <div class="evidence-item" onclick="openLightbox(this.querySelector('img').src)">
+          <img src="foto-magang-2.jpg" alt="Bukti Proyek Magang 2">
         </div>
-        <div class="evidence-thumb" onclick="openLightbox(this.querySelector('img').src)">
-          <img src="FotoMagang3.jpeg" alt="Bukti Magang 3">
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-info">
-        <h3>Prototipe Robotik Lengan Cerdas Berbasis Mikrokontroler</h3>
-        <p>Pengembangan lengan robot pemilah barang otomatis berdasarkan pembacaan sensor warna terintegrasi dengan basis data.</p>
-        <div class="project-tags">
-          <span>Arduino</span><span>Sensor</span><span>C++</span>
-        </div>
-      </div>
-      
-      <div class="project-evidence-gallery">
-        <div class="evidence-thumb" onclick="openLightbox(this.querySelector('img').src)">
-          <img src="foto-robotik-1.jpg" alt="Bukti Robotik 1">
-        </div>
-        <div class="evidence-thumb" onclick="openLightbox(this.querySelector('img').src)">
-          <img src="foto-robotik-2.jpg" alt="Bukti Robotik 2">
-        </div>
-        <div class="evidence-thumb" onclick="openLightbox(this.querySelector('img').src)">
-          <img src="foto-robotik-3.jpg" alt="Bukti Robotik 3">
+        <div class="evidence-item" onclick="openLightbox(this.querySelector('img').src)">
+          <img src="foto-magang-3.jpg" alt="Bukti Proyek Magang 3">
         </div>
       </div>
     </div>
@@ -447,45 +405,34 @@ section{padding:100px 2rem 80px;max-width:1200px;margin:0 auto;position:relative
 </div>
 
 <script>
-// REQ 4: OTOMATIS BUKA HALAMAN PERTAMA (TOP) SETIAP MASUK LINK GITHUB
-window.addEventListener('beforeunload', () => {
-  window.scrollTo(0, 0);
-});
-if (window.location.hash) {
-  window.location.hash = '';
+// REQ 4: MEMAKSA INSTAN HALAMAN KE ATAS SAAT MASUK/REFRESH AGAR ANIMASI JATOH TERLIHAT
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
 }
+window.scrollTo(0, 0);
 window.addEventListener('load', () => {
-  setTimeout(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, 50);
+  setTimeout(() => { window.scrollTo(0, 0); }, 10);
 });
 
-// INTERACTIVE DRAGGABLE & LANYARD PHYSICS FOR NAMETAG
+// DRAGGABLE LOGIC FOR NAMETAG
 const draggable = document.getElementById('dragTag');
 const nametag = document.getElementById('tiltTag');
 const lanyard = document.getElementById('lanyardNode');
 
 let isDragging = false;
-let currentX = 0;
-let currentY = 0;
-let initialX = 0;
-let initialY = 0;
-let xOffset = 0;
-let yOffset = 0;
+let currentX = 0, currentY = 0, initialX = 0, initialY = 0;
+let xOffset = 0, yOffset = 0;
 
 function updateLanyardLine() {
   if(!lanyard || !draggable) return;
   const lanyardRect = lanyard.getBoundingClientRect();
   const tagRect = draggable.getBoundingClientRect();
-  
   const startX = lanyardRect.left + (lanyardRect.width / 2);
   const startY = lanyardRect.top;
   const endX = tagRect.left + (tagRect.width / 2);
   const endY = tagRect.top + 20;
-  
   const distance = Math.hypot(endX - startX, endY - startY);
   const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
-  
   lanyard.style.height = `${distance}px`;
   lanyard.style.transform = `translateX(-50%) rotate(${angle - 90}deg)`;
 }
@@ -504,25 +451,16 @@ function onPointerDown(e) {
 
 function onPointerMove(e) {
   if (!isDragging) {
-    // 3D Tilt Effect on Hover when not dragging
     const rect = draggable.getBoundingClientRect();
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    
-    const x = clientX - rect.left;
-    const y = clientY - rect.top;
-    const xc = rect.width / 2;
-    const yc = rect.height / 2;
-    const angleX = (yc - y) / 10;
-    const angleY = (x - xc) / 10;
-    
-    nametag.style.transform = `perspective(600px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+    const x = clientX - rect.left, y = clientY - rect.top;
+    const xc = rect.width / 2, yc = rect.height / 2;
+    nametag.style.transform = `perspective(600px) rotateX(${(yc - y) / 10}deg) rotateY(${(x - xc) / 10}deg)`;
     updateLanyardLine();
     return;
   }
-
   e.preventDefault();
-  
   if (e.type === "touchmove") {
     currentX = e.touches[0].clientX - initialX;
     currentY = e.touches[0].clientY - initialY;
@@ -530,17 +468,10 @@ function onPointerMove(e) {
     currentX = e.clientX - initialX;
     currentY = e.clientY - initialY;
   }
-
-  xOffset = currentX;
-  yOffset = currentY;
-
-  // Batasi jangkauan tarik agar tetap presisi
+  xOffset = currentX; yOffset = currentY;
   xOffset = Math.max(-200, Math.min(200, xOffset));
   yOffset = Math.max(-50, Math.min(250, yOffset));
-
   draggable.style.transform = `translate3d(${xOffset}px, ${yOffset}px, 0)`;
-  
-  // Efek ayunan dinamis saat ditarik
   nametag.style.transform = `perspective(600px) rotateY(${xOffset * 0.1}deg) rotateX(${-yOffset * 0.05}deg)`;
   updateLanyardLine();
 }
@@ -548,70 +479,40 @@ function onPointerMove(e) {
 function onPointerUp() {
   if (!isDragging) return;
   isDragging = false;
-  
-  // Kembalikan nametag ke posisi semula dengan efek membal (smooth bounce back)
   nametag.style.transition = 'transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.5)';
   draggable.style.transition = 'transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.5)';
-  
   xOffset = 0; yOffset = 0;
   draggable.style.transform = `translate3d(0, 0, 0)`;
   nametag.style.transform = `perspective(600px) rotateX(0deg) rotateY(0deg)`;
-  
-  setTimeout(() => {
-    draggable.style.transition = 'none';
-    updateLanyardLine();
-  }, 600);
+  setTimeout(() => { draggable.style.transition = 'none'; updateLanyardLine(); }, 600);
 }
 
-// Event Listeners untuk Drag & Tilt
 draggable.addEventListener('mousedown', onPointerDown);
 window.addEventListener('mousemove', onPointerMove);
 window.addEventListener('mouseup', onPointerUp);
-
 draggable.addEventListener('touchstart', onPointerDown, {passive:false});
 window.addEventListener('touchmove', onPointerMove, {passive:false});
 window.addEventListener('touchend', onPointerUp);
-
 draggable.addEventListener('mouseleave', () => {
   if (isDragging) return;
   nametag.style.transition = 'transform .5s ease';
   nametag.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg)';
 });
 
-// LIGHTBOX FUNCTIONALITY
-function openLightbox(src){
-  if(!src || src.includes('#')) return;
-  document.getElementById('lightboxImg').src = src;
-  document.getElementById('lightbox').classList.add('open');
-}
-function closeLightbox(){
-  document.getElementById('lightbox').classList.remove('open');
-}
-document.getElementById('lightbox').addEventListener('click', function(e){
-  if(e.target === this || e.target.classList.contains('lightbox-close') || e.target.closest('.lightbox-close')) {
-    closeLightbox();
-  }
-});
+// LIGHTBOX FUNCTION
+function openLightbox(src){if(!src)return;document.getElementById('lightboxImg').src=src;document.getElementById('lightbox').classList.add('open');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this || e.target.classList.contains('lightbox-close') || e.target.closest('.lightbox-close')) closeLightbox();});
 
-// SCROLL REVEAL (INTERSECTION OBSERVER)
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting) {
-      e.target.classList.add('visible');
-    }
-  });
-}, {threshold: 0.08});
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+// SCROLL REVEAL (OBSERVER)
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-// HAMBURGER MENU RESPONSE
-document.getElementById('hamburger').addEventListener('click', () => {
-  document.getElementById('navLinks').classList.toggle('open');
-});
-document.querySelectorAll('.nav-links a').forEach(a => {
-  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
-});
+// HAMBURGER RESPONSE
+document.getElementById('hamburger').addEventListener('click',()=>{document.getElementById('navLinks').classList.toggle('open');});
+document.querySelectorAll('.nav-links a').forEach(a=>{a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open'));});
 
-// Inisialisasi posisi lanyard awal
+// Loop interval tipis biar lanyard ngetrack posisi awal dengan pas
 setInterval(updateLanyardLine, 100);
 </script>
 </body>
