@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gusti Muhammad Hairul Alim — Portfolio</title>
 <meta name="description" content="Portfolio Gusti Muhammad Hairul Alim, Mahasiswa D4 Teknologi Rekayasa Elektronika Politeknik Negeri Semarang">
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!-- FONT DIUBAH: Space Mono + Outfit (formal, menggantikan Syne) -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
@@ -20,7 +21,8 @@
     --card:#161b27;
   }
   html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;line-height:1.6;overflow-x:hidden}
+  /* FONT DIUBAH: Outfit menggantikan Syne */
+  body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;line-height:1.6;overflow-x:hidden}
 
   /* ====== NAV ====== */
   nav{
@@ -44,11 +46,16 @@
   /* ====== SECTIONS ====== */
   section{padding:5rem 2rem;max-width:900px;margin:0 auto}
 
-  /* ====== HERO ====== */
+  /* ====== HERO — DIUBAH: layout flex untuk tampung nametag di kanan ====== */
   #hero{
-    min-height:100vh;display:flex;flex-direction:column;justify-content:center;
-    padding-top:6rem;position:relative;
+    min-height:100vh;display:flex;align-items:center;
+    padding-top:5rem;position:relative;max-width:100%;
   }
+  .hero-inner{
+    max-width:900px;margin:0 auto;width:100%;padding:0 2rem;
+    display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;
+  }
+  .hero-left{flex:1;min-width:260px;display:flex;flex-direction:column;justify-content:center}
   .hero-grid{
     position:absolute;top:0;left:0;right:0;bottom:0;
     background-image:linear-gradient(var(--border) 1px,transparent 1px),
@@ -88,10 +95,81 @@
   }
   .btn-outline:hover{border-color:var(--accent)}
 
+  /* ====== NAMETAG PENDULUM — BARU ====== */
+  .pendulum-stage{
+    position:relative;width:220px;height:400px;
+    flex-shrink:0;opacity:0;animation:fadeUp .6s .3s forwards;
+  }
+  .p-hint{
+    position:absolute;bottom:4px;left:50%;transform:translateX(-50%);
+    font-family:'Space Mono',monospace;font-size:8px;color:rgba(0,229,160,.3);
+    letter-spacing:1px;white-space:nowrap;
+  }
+  .p-anchor{
+    position:absolute;top:0;left:50%;transform:translateX(-50%);
+    width:18px;height:18px;background:var(--bg2);
+    border:1.5px solid rgba(0,229,160,.4);border-radius:50%;z-index:20;
+    box-shadow:0 0 10px rgba(0,229,160,.2);cursor:pointer;
+  }
+  .p-anchor::after{
+    content:'';position:absolute;top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    width:6px;height:6px;border-radius:50%;background:rgba(0,229,160,.7);
+  }
+  #p-rope{position:absolute;top:9px;left:50%;transform-origin:top center;z-index:18;pointer-events:none}
+  #p-card{position:absolute;z-index:19;cursor:grab;touch-action:none}
+  #p-card:active{cursor:grabbing}
+  .p-clip{
+    width:20px;height:12px;background:rgba(0,229,160,.2);
+    border:1px solid rgba(0,229,160,.4);border-radius:3px;margin:0 auto;
+  }
+  .nametag-card{
+    width:175px;background:rgba(22,27,39,0.97);
+    border:1px solid rgba(0,229,160,.25);border-radius:12px;
+    padding:1rem .9rem;
+    box-shadow:0 8px 40px rgba(0,0,0,.6),0 0 20px rgba(0,229,160,.05),
+               inset 0 1px 0 rgba(255,255,255,.04);
+  }
+  .nt-logo{
+    font-family:'Space Mono',monospace;font-size:7px;color:rgba(0,229,160,.6);
+    letter-spacing:1.5px;text-align:center;
+    border-bottom:1px solid rgba(0,229,160,.1);padding-bottom:.5rem;margin-bottom:.6rem;
+  }
+  .nt-photo{
+    width:85px;height:105px;border-radius:8px;margin:0 auto .6rem;
+    background:linear-gradient(135deg,#0f1828,#1a2a4a,#0f1828);
+    border:2px solid rgba(0,229,160,.15);
+    display:flex;align-items:center;justify-content:center;
+    font-size:34px;color:rgba(0,229,160,.2);overflow:hidden;
+  }
+  /* Jika pakai foto: ganti icon dengan <img src="foto.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:6px"> */
+  .nt-photo img{width:100%;height:100%;object-fit:cover;border-radius:6px}
+  .nt-name{font-size:8.5px;font-weight:700;text-align:center;color:var(--text);margin-bottom:.15rem;letter-spacing:.2px}
+  .nt-role{font-size:6.5px;color:var(--muted);text-align:center;font-family:'Space Mono',monospace;margin-bottom:.5rem;letter-spacing:.5px}
+  .nt-badge{
+    background:rgba(0,229,160,.07);border:1px solid rgba(0,229,160,.18);
+    color:rgba(0,229,160,.7);font-size:6px;text-align:center;
+    padding:.2rem .4rem;border-radius:4px;font-family:'Space Mono',monospace;letter-spacing:.5px;
+  }
+  .nt-stripes{display:flex;gap:3px;margin-top:.5rem;justify-content:center}
+  .nt-stripe{height:3px;border-radius:2px;flex:1}
+
   /* ====== SECTION HEADERS ====== */
   .sec-label{font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:3px;margin-bottom:.4rem}
   .sec-title{font-size:2rem;font-weight:800;margin-bottom:2.5rem;position:relative}
   .sec-title::after{content:'';display:block;width:40px;height:3px;background:var(--accent);margin-top:.5rem;border-radius:2px}
+
+  /* ====== BLUEPRINT BG section 1-5 — BARU ====== */
+  .blueprint-section{position:relative}
+  .blueprint-section::before{
+    content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background-image:
+      linear-gradient(rgba(0,229,160,.04) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(0,229,160,.04) 1px,transparent 1px),
+      linear-gradient(rgba(0,229,160,.02) .5px,transparent .5px),
+      linear-gradient(90deg,rgba(0,229,160,.02) .5px,transparent .5px);
+    background-size:80px 80px,80px 80px,20px 20px,20px 20px;
+  }
 
   /* ====== ABOUT ====== */
   .about-intro{color:var(--muted);font-size:.97rem;line-height:1.8;margin-bottom:2rem}
@@ -102,18 +180,39 @@
   .about-card p{color:var(--muted);font-size:.9rem;line-height:1.7}
   .about-card strong{color:var(--text)}
 
-  /* ====== SKILLS ====== */
-  .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1rem}
-  .skill-card{
-    background:var(--card);border:1px solid var(--border);border-radius:10px;
-    padding:1.25rem;transition:border-color .2s,transform .2s;
+  /* ====== SKILLS — DIUBAH: 3 kategori ====== */
+  .skill-cat{margin-bottom:2rem}
+  .skill-cat:last-child{margin-bottom:0}
+  .skill-cat-title{
+    font-family:'Space Mono',monospace;font-size:10px;color:#e8b84b;
+    letter-spacing:2px;margin-bottom:1rem;padding-bottom:.4rem;
+    border-bottom:1px solid rgba(232,184,75,.15);
   }
-  .skill-card:hover{border-color:var(--accent);transform:translateY(-3px)}
-  .skill-icon{font-size:24px;color:var(--accent);margin-bottom:.6rem}
-  .skill-name{font-weight:700;font-size:.95rem;margin-bottom:.2rem}
-  .skill-desc{font-size:.78rem;color:var(--muted);line-height:1.5}
-  .skill-bar{height:3px;background:var(--border);border-radius:2px;margin-top:.75rem;overflow:hidden}
-  .skill-fill{height:100%;background:var(--accent);border-radius:2px;width:0%;transition:width 1.2s ease}
+  .skills-row{display:flex;flex-wrap:wrap;gap:.6rem}
+  .skill-chip{
+    background:var(--card);border:1px solid var(--border);
+    border-radius:8px;padding:.5rem .85rem;display:flex;align-items:center;gap:.45rem;
+    transition:border-color .2s,transform .2s;cursor:default;
+  }
+  .skill-chip:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .skill-chip .ic{font-size:17px;color:var(--accent)}
+  /* Badge icon software */
+  .sw-badge{
+    width:20px;height:20px;border-radius:4px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    font-size:9px;font-weight:700;font-family:'Space Mono',monospace;
+  }
+  .sw-proteus {background:#e8b84b;color:#000}
+  .sw-arduino {background:#00979d;color:#fff}
+  .sw-matlab  {background:#e16737;color:#fff}
+  .sw-eplan   {background:#003d7a;color:#fff}
+  .sw-autocad {background:#0696d7;color:#fff}
+  .sw-python  {background:#3776ab;color:#fff}
+  .sw-plc     {background:#ff6b35;color:#fff}
+  .sw-word    {background:#2b579a;color:#fff}
+  .sw-excel   {background:#217346;color:#fff}
+  .chip-name{font-size:.82rem;font-weight:600;color:var(--text)}
+  .chip-desc{font-size:.7rem;color:var(--muted)}
 
   /* ====== TIMELINE ====== */
   .timeline{position:relative;padding-left:2rem}
@@ -201,46 +300,84 @@
   </div>
 </nav>
 
-<!-- ====== HERO ====== -->
-<section id="hero">
+<!-- ====== HERO — DIREVISI: tambah nametag pendulum kanan ====== -->
+<div id="hero">
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
-  <div class="hero-tag">// D4 Teknologi Rekayasa Elektronika · Politeknik Negeri Semarang</div>
-  <h1 class="hero-name">Gusti Muhammad<br><span>Hairul Alim</span></h1>
-  <p class="hero-sub">
-    Mahasiswa D4 Teknologi Rekayasa Elektronika dengan keahlian di bidang pembacaan wiring diagram, 
-   wiring panel kontrol, dan dasar sistem otomasi industri.
-  </p>
-  <div class="hero-btns">
-    <a href="#projects" class="btn-primary">Lihat Proyek</a>
-    <a href="#contact" class="btn-outline">Hubungi Saya</a>
+  <div class="hero-inner">
+    <!-- Teks hero asli tidak berubah -->
+    <div class="hero-left">
+      <div class="hero-tag">// D4 Teknologi Rekayasa Elektronika · Politeknik Negeri Semarang</div>
+      <h1 class="hero-name">Gusti Muhammad<br><span>Hairul Alim</span></h1>
+      <p class="hero-sub">
+        Mahasiswa D4 Teknologi Rekayasa Elektronika dengan keahlian di bidang pembacaan wiring diagram,
+        wiring panel kontrol, dan dasar sistem otomasi industri.
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">Lihat Proyek</a>
+        <a href="#contact" class="btn-outline">Hubungi Saya</a>
+      </div>
+    </div>
+
+    <!-- BARU: Nametag pendulum -->
+    <div class="pendulum-stage" id="pendulumStage">
+      <div class="p-anchor" id="pAnchor" title="Klik untuk ayun ulang"></div>
+      <svg id="p-rope" style="position:absolute;top:9px;left:50%;overflow:visible;pointer-events:none;z-index:18">
+        <defs>
+          <linearGradient id="rg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1a3a2a"/>
+            <stop offset="100%" stop-color="#0d1a14"/>
+          </linearGradient>
+        </defs>
+        <line id="p-rope-line" x1="0" y1="0" x2="0" y2="120"
+          stroke="url(#rg)" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <div id="p-card" style="position:absolute;z-index:19;touch-action:none">
+        <div class="p-clip"></div>
+        <div class="nametag-card" id="p-nametag">
+          <div class="nt-logo">POLITEKNIK NEGERI SEMARANG</div>
+          <div class="nt-photo">
+            <!-- GANTI dengan: <img src="FotoProfil.jpeg" alt="Foto"> -->
+            <i class="ti ti-user" aria-hidden="true" style="font-size:34px;color:rgba(0,229,160,.2)"></i>
+          </div>
+          <div class="nt-name">GUSTI MUHAMMAD HAIRUL ALIM</div>
+          <div class="nt-role">D4 TEKNIK REKAYASA ELEKTRONIKA</div>
+          <div class="nt-badge">POLINES</div>
+          <div class="nt-stripes">
+            <div class="nt-stripe" style="background:rgba(0,229,160,.5)"></div>
+            <div class="nt-stripe" style="background:rgba(0,180,100,.35)"></div>
+            <div class="nt-stripe" style="background:rgba(0,229,160,.25)"></div>
+          </div>
+        </div>
+      </div>
+      <div class="p-hint">// drag &amp; release</div>
+    </div>
   </div>
-</section>
+</div>
 
 <div class="divider"></div>
 
-<!-- ====== ABOUT ====== -->
-<section id="about">
+<!-- ====== ABOUT — blueprint bg ditambahkan ====== -->
+<section id="about" class="blueprint-section">
   <div class="reveal">
     <div class="sec-label">// 01. Tentang</div>
     <h2 class="sec-title">Profil Saya</h2>
     <p class="about-intro">
-      Saya merupakan mahasiswa Semester 6 Program Studi Teknologi Rekayasa Elektronika, Jurusan Teknik Elektro di Politeknik Negeri Semarang, 
-      dengan latar belakang pendidikan Sekolah Menengah Kejuruan pada Jurusan Teknik Jaringan Tenaga Listrik di SMKN 2 Pangkalan Bun. 
-      Memiliki minat dan fokus pada bidang otomasi industri, sistem kontrol, instrumentasi, serta integrasi perangkat keras dan perangkat 
-      lunak dalam sistem elektronika terapan. Saya lebih berorientasi pada pembelajaran berbasis praktik (hands-on) dan pengembangan sistem 
-      secara langsung di lapangan, khususnya dalam proses perancangan, perakitan, pengawatan, hingga troubleshooting dalam sebuah sistem 
-      elektronika dan otomasi. Selain itu, saya juga memiliki pengalaman dalam pengembangan proyek berbasis mikrokontroler dan IoT menggunakan 
-      Arduino, ESP8266, serta perangkat otomasi lainnya. Saya memiliki ketertarikan untuk terus mengembangkan kompetensi di bidang maintenance, 
-      automation system, industrial control, dan teknologi industri berbasis digital. Saat ini sedang mengerjakan Tugas Akhir berupa sistem 
+      Saya merupakan mahasiswa Semester 6 Program Studi Teknologi Rekayasa Elektronika, Jurusan Teknik Elektro di Politeknik Negeri Semarang,
+      dengan latar belakang pendidikan Sekolah Menengah Kejuruan pada Jurusan Teknik Jaringan Tenaga Listrik di SMKN 2 Pangkalan Bun.
+      Memiliki minat dan fokus pada bidang otomasi industri, sistem kontrol, instrumentasi, serta integrasi perangkat keras dan perangkat
+      lunak dalam sistem elektronika terapan. Saya lebih berorientasi pada pembelajaran berbasis praktik (hands-on) dan pengembangan sistem
+      secara langsung di lapangan, khususnya dalam proses perancangan, perakitan, pengawatan, hingga troubleshooting dalam sebuah sistem
+      elektronika dan otomasi. Selain itu, saya juga memiliki pengalaman dalam pengembangan proyek berbasis mikrokontroler dan IoT menggunakan
+      Arduino, ESP8266, serta perangkat otomasi lainnya. Saya memiliki ketertarikan untuk terus mengembangkan kompetensi di bidang maintenance,
+      automation system, industrial control, dan teknologi industri berbasis digital. Saat ini sedang mengerjakan Tugas Akhir berupa sistem
       sorting otomatis berbasis YOLOv8 dan PLC yang menggabungkan teknologi computer vision, kontrol industri, sensor, dan otomasi untuk proses
       identifikasi dan pemisahan objek secara otomatis.
-     
     </p>
     <div class="about-grid">
       <div class="about-card">
         <h3>// PENDIDIKAN</h3>
-        <p><strong>D4 Teknologi Rekayasa Elektronika</strong><br>Politeknik Negeri Semarang<br>2023 – 2027 </p>
+        <p><strong>D4 Teknologi Rekayasa Elektronika</strong><br>Politeknik Negeri Semarang<br>2023 – 2027</p>
       </div>
       <div class="about-card">
         <h3>// ASAL</h3>
@@ -248,11 +385,11 @@
       </div>
       <div class="about-card">
         <h3>// Organisasi</h3>
-        <p>BEM Polines (Staf Muda), Liaison Officer Pengembangan Spiritual Mahasiswa (PESIMA),<br>Liaison Officer Vocatech Edufair 2026, </p>
+        <p>BEM Polines (Staf Muda), Liaison Officer Pengembangan Spiritual Mahasiswa (PESIMA),<br>Liaison Officer Vocatech Edufair 2026</p>
       </div>
       <div class="about-card">
         <h3>// MINAT</h3>
-        <p>Sistem otomasi industri, Operation&Maintenance , dan instalasi listrik Industri .</p>
+        <p>Sistem otomasi industri, Operation &amp; Maintenance, dan instalasi listrik Industri.</p>
       </div>
     </div>
   </div>
@@ -260,19 +397,36 @@
 
 <div class="divider"></div>
 
-<!-- ====== SKILLS ====== -->
-<section id="skills">
+<!-- ====== SKILLS — DIUBAH: 3 kategori dengan badge icon ====== -->
+<section id="skills" class="blueprint-section">
   <div class="reveal">
     <div class="sec-label">// 02. Keahlian</div>
-    <h2 class="sec-title">Skill & Kompetensi</h2>
-    <div class="skills-grid" id="skillsGrid"></div>
+    <h2 class="sec-title">Skill &amp; Kompetensi</h2>
+
+    <!-- SOFTWARE -->
+    <div class="skill-cat">
+      <div class="skill-cat-title">⬡ SOFTWARE &amp; TOOLS</div>
+      <div class="skills-row" id="swGrid"></div>
+    </div>
+
+    <!-- HARDWARE -->
+    <div class="skill-cat">
+      <div class="skill-cat-title">⬡ HARDWARE &amp; ELECTRICAL</div>
+      <div class="skills-row" id="hwGrid"></div>
+    </div>
+
+    <!-- SOFTSKILL -->
+    <div class="skill-cat">
+      <div class="skill-cat-title">⬡ SOFT SKILL</div>
+      <div class="skills-row" id="ssGrid"></div>
+    </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ====== EXPERIENCE ====== -->
-<section id="experience">
+<!-- ====== EXPERIENCE — tidak diubah + blueprint bg ====== -->
+<section id="experience" class="blueprint-section">
   <div class="reveal">
     <div class="sec-label">// 03. Pengalaman</div>
     <h2 class="sec-title">Riwayat Pengalaman</h2>
@@ -280,7 +434,7 @@
 
       <div class="tl-item">
         <div class="tl-dot"></div>
-        <div class="tl-date">Juli 2022 - September 2022 MAGANG SMK </div>
+        <div class="tl-date">Juli 2022 - September 2022 MAGANG SMK</div>
         <div class="tl-title">Teknisi Listrik — PT Karya Mitra Sejahtera</div>
         <div class="tl-place"></div>
         <div class="tl-desc">
@@ -330,16 +484,16 @@
 
 <div class="divider"></div>
 
-<!-- ====== PROJECTS ====== -->
-<section id="projects">
+<!-- ====== PROJECTS — tidak diubah + blueprint bg ====== -->
+<section id="projects" class="blueprint-section">
   <div class="reveal">
     <div class="sec-label">// 04. Proyek</div>
-    <h2 class="sec-title">Karya & Proyek</h2>
+    <h2 class="sec-title">Karya &amp; Proyek</h2>
     <div class="proj-grid">
 
       <div class="proj-card">
         <div class="proj-header">
-          <div class="proj-title">Sistem Sorting Otomatis Berbasis YOLOv8 & PLC</div>
+          <div class="proj-title">Sistem Sorting Otomatis Berbasis YOLOv8 &amp; PLC</div>
           <div class="proj-badge">TUGAS AKHIR</div>
         </div>
         <p class="proj-desc">
@@ -374,27 +528,11 @@
           <span class="tag">Panel Listrik</span>
           <span class="tag">Standar PLN</span>
         </div>
-        <img src="FotoMagang1.jpg"
-        style="
-        width:30%;
-        height:150px;
-        object-fit:cover;
-        border-radius:8px;
-        ">
-        <img src="FotoMagang2.jpeg"
-        style="
-        width:30%;
-        height:150px;
-        object-fit:cover;
-        border-radius:8px;
-        ">
-        <img src="FotoMagang3.jpeg"
-        style="
-        width:30%;
-        height:150px;
-        object-fit:cover;
-        border-radius:8px;
-        ">
+        <div style="display:flex;gap:.5rem;margin-top:.75rem;flex-wrap:wrap">
+          <img src="FotoMagang1.jpg" style="width:30%;height:130px;object-fit:cover;border-radius:8px;border:1px solid var(--border)">
+          <img src="FotoMagang2.jpeg" style="width:30%;height:130px;object-fit:cover;border-radius:8px;border:1px solid var(--border)">
+          <img src="FotoMagang3.jpeg" style="width:30%;height:130px;object-fit:cover;border-radius:8px;border:1px solid var(--border)">
+        </div>
       </div>
 
       <div class="proj-card">
@@ -404,27 +542,18 @@
         </div>
         <p class="proj-desc">
           Merancang sistem kontrol ketinggian air secara otomatis menggunakan Arduino dan sensor VL6180X.
-          Menggunakan metode PID di porgram menggunakan Matlab Simulink.
+          Menggunakan metode PID di program menggunakan Matlab Simulink.
         </p>
         <div class="proj-tags">
           <span class="tag">Arduino Uno</span>
           <span class="tag">Arduino Nano</span>
           <span class="tag">Matlab</span>
           <span class="tag">Sensor VL6180X</span>
-       </div>
-        <img src="fotowaterlevel1.jpeg"
-        style="
-        width:30%;
-        height:150px;
-        object-fit:cover;
-        border-radius:8px;
-        ">
-        <img src="fotowaterlevel2.jpeg"
-        style="
-        width:30%;
-        height:150px;
-        object-fit:cover;
-        border-radius:8px;
+        </div>
+        <div style="display:flex;gap:.5rem;margin-top:.75rem;flex-wrap:wrap">
+          <img src="fotowaterlevel1.jpeg" style="width:30%;height:130px;object-fit:cover;border-radius:8px;border:1px solid var(--border)">
+          <img src="fotowaterlevel2.jpeg" style="width:30%;height:130px;object-fit:cover;border-radius:8px;border:1px solid var(--border)">
+        </div>
       </div>
 
     </div>
@@ -433,8 +562,8 @@
 
 <div class="divider"></div>
 
-<!-- ====== CONTACT ====== -->
-<section id="contact">
+<!-- ====== CONTACT — tidak diubah + blueprint bg ====== -->
+<section id="contact" class="blueprint-section">
   <div class="reveal">
     <div class="sec-label">// 05. Kontak</div>
     <h2 class="sec-title">Hubungi Saya</h2>
@@ -481,55 +610,161 @@
 
 <!-- ====== SCRIPTS ====== -->
 <script>
-  // ---- DATA SKILLS ----
-  // Untuk tambah skill baru: salin satu baris {icon,name,desc,pct} dan tambahkan ke array
-  const skills = [
-    {icon:'ti-cpu',       name:'PLC Programming',   desc:'Ladder diagram, FBD, kontrol industri',  pct:75},
-    {icon:'ti-bolt',      name:'Instalasi Listrik',  desc:'1 fase & 3 fase, panel, wiring, PLN',    pct:85},
-    {icon:'ti-settings',  name:'Motor & VFD',        desc:'Pengendalian motor 3 fase + drive',       pct:80},
-    {icon:'ti-code',      name:'Python (Dasar)',      desc:'Scripting untuk AI & otomasi',           pct:50},
-    {icon:'ti-chart-line',name:'Instrumentasi',      desc:'Sensor, transduser, kalibrasi',          pct:65},
+  // ---- SKILL DATA ----
+  // SOFTWARE — tambah baris baru untuk software lain
+  const swSkills = [
+    {cls:'sw-proteus', ico:'P',   label:'Proteus',      desc:'Simulasi Rangkaian'},
+    {cls:'sw-arduino', ico:'A',   label:'Arduino IDE',  desc:'Mikrokontroler'},
+    {cls:'sw-matlab',  ico:'M',   label:'MATLAB',       desc:'Simulink / PID'},
+    {cls:'sw-eplan',   ico:'E',   label:'EPLAN',        desc:'Wiring Diagram'},
+    {cls:'sw-autocad', ico:'C',   label:'AutoCAD',      desc:'Desain Teknik'},
+    {cls:'sw-python',  ico:'Py',  label:'Python',       desc:'Scripting / AI'},
+    {cls:'sw-plc',     ico:'PLC', label:'PLC Software', desc:'Ladder Diagram'},
+    {cls:'sw-word',    ico:'W',   label:'MS Word',      desc:'Dokumentasi'},
+    {cls:'sw-excel',   ico:'X',   label:'MS Excel',     desc:'Pengolahan Data'},
+  ];
+  const hwSkills = [
+    {icon:'ti-cpu',              name:'PLC Programming',  desc:'Ladder diagram, FBD, kontrol industri'},
+    {icon:'ti-bolt',             name:'Instalasi Listrik', desc:'1 fase & 3 fase, panel, wiring, PLN'},
+    {icon:'ti-settings',         name:'Motor & VFD',       desc:'Pengendalian motor 3 fase + drive'},
+    {icon:'ti-circuit-resistor', name:'Wiring Panel',      desc:'Panel kontrol, MCC, power distribution'},
+    {icon:'ti-chart-line',       name:'Instrumentasi',     desc:'Sensor, transduser, kalibrasi'},
+    {icon:'ti-cpu-2',            name:'Mikrokontroler',    desc:'Arduino, ESP8266, IoT'},
+  ];
+  const ssSkills = [
+    {icon:'ti-users',         name:'Teamwork',         desc:'Kerja tim & kolaborasi'},
+    {icon:'ti-message-circle',name:'Komunikasi',       desc:'Presentasi & koordinasi'},
+    {icon:'ti-bulb',          name:'Problem Solving',  desc:'Analisis & troubleshooting'},
+    {icon:'ti-clock',         name:'Manajemen Waktu',  desc:'Prioritas & efisiensi'},
+    {icon:'ti-award',         name:'Adaptabilitas',    desc:'Cepat menyesuaikan diri'},
   ];
 
-  // Render skill cards
-  const grid = document.getElementById('skillsGrid');
-  skills.forEach(s => {
-    const card = document.createElement('div');
-    card.className = 'skill-card';
-    card.innerHTML = `
-      <div class="skill-icon"><i class="ti ${s.icon}" aria-hidden="true"></i></div>
-      <div class="skill-name">${s.name}</div>
-      <div class="skill-desc">${s.desc}</div>
-      <div class="skill-bar"><div class="skill-fill" data-pct="${s.pct}"></div></div>
-    `;
-    grid.appendChild(card);
+  // Render software chips
+  document.getElementById('swGrid').innerHTML = swSkills.map(s =>
+    `<div class="skill-chip">
+      <div class="sw-badge ${s.cls}">${s.ico}</div>
+      <div><div class="chip-name">${s.label}</div><div class="chip-desc">${s.desc}</div></div>
+    </div>`
+  ).join('');
+
+  // Render hardware & softskill chips
+  ['hwGrid','ssGrid'].forEach((id, i) => {
+    document.getElementById(id).innerHTML = (i===0 ? hwSkills : ssSkills).map(s =>
+      `<div class="skill-chip">
+        <i class="ti ${s.icon} ic" aria-hidden="true"></i>
+        <div><div class="chip-name">${s.name}</div><div class="chip-desc">${s.desc}</div></div>
+      </div>`
+    ).join('');
+  });
+
+  // ---- PENDULUM PHYSICS ----
+  const ROPE = 130, G = 0.003, DAMP = 0.991;
+  const stage = document.getElementById('pendulumStage');
+  const pcard = document.getElementById('p-card');
+  const pntag = document.getElementById('p-nametag');
+  const rsvg  = document.getElementById('p-rope');
+  const rline = document.getElementById('p-rope-line');
+
+  let angle = -0.55, vel = 0.042;
+  let drag = false, lx = 0, ly = 0, dvx = 0, dvy = 0;
+  let raf;
+
+  function anc(){
+    const r = stage.getBoundingClientRect();
+    return {x: r.left + r.width/2, y: r.top + 9};
+  }
+
+  function draw(cx, cy){
+    const sr = stage.getBoundingClientRect();
+    const cw = pcard.offsetWidth || 175;
+    pcard.style.left = (cx - sr.left - cw/2) + 'px';
+    pcard.style.top  = (cy - sr.top) + 'px';
+    const a  = anc();
+    const dx = cx - a.x, dy = cy - a.y;
+    const len = Math.sqrt(dx*dx + dy*dy);
+    rsvg.style.transform = `rotate(${Math.atan2(dx,dy)*180/Math.PI}deg)`;
+    rline.setAttribute('y2', len);
+    pntag.style.transform = `rotate(${Math.sin(angle)*6}deg)`;
+  }
+
+  function step(){
+    if(drag) return;
+    vel = (vel - G * Math.sin(angle)) * DAMP;
+    angle += vel;
+    const a = anc();
+    draw(a.x + Math.sin(angle)*ROPE, a.y + Math.cos(angle)*ROPE);
+    raf = requestAnimationFrame(step);
+  }
+
+  // init
+  pcard.style.position = 'absolute';
+  pcard.style.opacity  = '0';
+  pcard.style.transition = 'opacity .4s';
+  rsvg.style.position = 'absolute';
+  setTimeout(() => {
+    pcard.style.opacity = '1';
+    const a = anc();
+    draw(a.x + Math.sin(angle)*ROPE, a.y + Math.cos(angle)*ROPE);
+    raf = requestAnimationFrame(step);
+  }, 300);
+
+  // mouse drag
+  pcard.addEventListener('mousedown', e => {
+    drag=true; lx=e.clientX; ly=e.clientY; dvx=dvy=0;
+    pcard.style.cursor='grabbing'; cancelAnimationFrame(raf); e.preventDefault();
+  });
+  window.addEventListener('mousemove', e => {
+    if(!drag) return;
+    dvx=e.clientX-lx; dvy=e.clientY-ly; lx=e.clientX; ly=e.clientY;
+    const a=anc(), dx=lx-a.x, dy=ly-a.y, d=Math.sqrt(dx*dx+dy*dy);
+    const cx=d>ROPE?a.x+dx/d*ROPE:lx, cy=d>ROPE?a.y+dy/d*ROPE:ly;
+    angle=Math.atan2(cx-a.x,cy-a.y); draw(cx,cy);
+  });
+  window.addEventListener('mouseup', () => {
+    if(!drag) return; drag=false; pcard.style.cursor='grab';
+    const a=anc(), px=a.x+Math.sin(angle)*ROPE, py=a.y+Math.cos(angle)*ROPE;
+    const tx=-(py-a.y)/ROPE, ty=(px-a.x)/ROPE;
+    vel=(dvx*tx+dvy*ty)/ROPE*0.65; raf=requestAnimationFrame(step);
+  });
+
+  // touch
+  pcard.addEventListener('touchstart', e => {
+    drag=true; lx=e.touches[0].clientX; ly=e.touches[0].clientY;
+    dvx=dvy=0; cancelAnimationFrame(raf);
+  },{passive:true});
+  window.addEventListener('touchmove', e => {
+    if(!drag) return;
+    dvx=e.touches[0].clientX-lx; dvy=e.touches[0].clientY-ly;
+    lx=e.touches[0].clientX; ly=e.touches[0].clientY;
+    const a=anc(),dx=lx-a.x,dy=ly-a.y,d=Math.sqrt(dx*dx+dy*dy);
+    const cx=d>ROPE?a.x+dx/d*ROPE:lx,cy=d>ROPE?a.y+dy/d*ROPE:ly;
+    angle=Math.atan2(cx-a.x,cy-a.y); draw(cx,cy);
+  },{passive:true});
+  window.addEventListener('touchend', () => {
+    if(!drag) return; drag=false;
+    const a=anc(),px=a.x+Math.sin(angle)*ROPE,py=a.y+Math.cos(angle)*ROPE;
+    const tx=-(py-a.y)/ROPE,ty=(px-a.x)/ROPE;
+    vel=(dvx*tx+dvy*ty)/ROPE*0.65; raf=requestAnimationFrame(step);
+  });
+
+  // klik anchor = ayun ulang
+  document.getElementById('pAnchor').addEventListener('click', () => {
+    cancelAnimationFrame(raf); angle=-0.65; vel=0.05; raf=requestAnimationFrame(step);
   });
 
   // ---- SCROLL REVEAL ----
-  const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if(e.isIntersecting){
-        e.target.classList.add('visible');
-        // Animasi bar skill setelah section muncul
-        e.target.querySelectorAll('.skill-fill').forEach(bar => {
-          bar.style.width = bar.dataset.pct + '%';
-        });
-      }
-    });
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
   }, {threshold: 0.1});
-  revealEls.forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-  // ---- HAMBURGER MOBILE ----
+  // ---- HAMBURGER ----
   document.getElementById('hamburger').addEventListener('click', () => {
     document.getElementById('navLinks').classList.toggle('open');
   });
   document.querySelectorAll('.nav-links a').forEach(a => {
-    a.addEventListener('click', () => {
-      document.getElementById('navLinks').classList.remove('open');
-    });
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
   });
 </script>
-
 </body>
 </html>
