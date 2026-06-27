@@ -26,16 +26,11 @@
 
   /* ====== PCB BACKGROUND SVG ====== */
   .pcb-bg{
-  position:fixed;top:0;left:0;right:0;bottom:0;z-index:-2;pointer-events:none;overflow:hidden;
-  background-image:url('Background.jpeg');
-  background-size:cover;
-  background-position:center;
-  opacity:0.15;
-}
-
+    position:fixed;top:0;left:0;right:0;bottom:0;z-index:-2;pointer-events:none;overflow:hidden;
+  }
+  .pcb-bg svg{width:100%;height:100%;opacity:0.13}
 
   /* ====== NAV ====== */
- 
   nav{
     position:fixed;top:0;left:0;right:0;z-index:100;
     background:rgba(4,8,15,0.92);backdrop-filter:blur(12px);
@@ -748,6 +743,20 @@
           <div class="contact-val">Politeknik Negeri Semarang</div>
         </div>
       </div>
+      <a href="https://www.instagram.com/gusti_irull" target="_blank" rel="noopener" class="contact-item">
+        <div class="contact-icon"><i class="ti ti-brand-instagram" aria-hidden="true"></i></div>
+        <div>
+          <div class="contact-label">// INSTAGRAM</div>
+          <div class="contact-val">gusti_irull</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/gustiirul/" target="_blank" rel="noopener" class="contact-item">
+        <div class="contact-icon"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></div>
+        <div>
+          <div class="contact-label">// LINKEDIN</div>
+          <div class="contact-val">Gusti Muhammad Hairul Alim</div>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -768,77 +777,14 @@
   // Contoh: {imgSrc:'logo-arduino.svg', label:'Arduino IDE', desc:'...'}
 
   const swSkills = [
+    {imgSrc:'PROTEUS.jpeg',    label:'Proteus',      desc:'Simulasi Rangkaian'},
+    {imgSrc:'ARDUINOIDE.jpeg', label:'Arduino IDE',  desc:'Mikrokontroler'},
+    {imgSrc:'MATLAB.jpeg',     label:'MATLAB',       desc:'Simulink / PID'},
+    {imgSrc:'EASYEDA.jpeg',    label:'EASYEDA',      desc:'Wiring Diagram'},
+    {imgSrc:'PYTHON.jpeg',     label:'Python',       desc:'Scripting / AI'},
+    {imgSrc:'CXONE.jpeg',      label:'CX-One',       desc:'PLC / Ladder Diagram'},
     {
-      svgInline:`<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="24" height="24" rx="4" fill="#3d2e00"/>
-        <text x="12" y="16" text-anchor="middle" font-size="10" font-weight="700" fill="#e8b84b" font-family="monospace">P</text>
-        <circle cx="17" cy="7" r="3" fill="none" stroke="#e8b84b" stroke-width="1.5"/>
-        <line x1="5" y1="7" x2="14" y2="7" stroke="#e8b84b" stroke-width="1.2"/>
-      </svg>`,
-      label:'Proteus', desc:'Simulasi Rangkaian'
-    },
-    {
-      svgInline:`<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <rect width="24" height="24" rx="4" fill="#00979d"/>
-        <path d="M5 16 Q7 8 12 8 Q17 8 19 16" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-        <circle cx="12" cy="8" r="2" fill="white"/>
-        <line x1="9" y1="16" x2="15" y2="16" stroke="white" stroke-width="1.5"/>
-      </svg>`,
-      label:'Arduino IDE', desc:'Mikrokontroler'
-    },
-    {
-      svgInline:`<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <rect width="24" height="24" rx="4" fill="#e16737"/>
-        <text x="12" y="16" text-anchor="middle" font-size="9" font-weight="700" fill="white" font-family="serif">M</text>
-        <line x1="4" y1="19" x2="20" y2="19" stroke="white" stroke-width="1" opacity="0.5"/>
-      </svg>`,
-      label:'MATLAB', desc:'Simulink / PID'
-    },
-    {
-      svgInline:`<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <rect width="24" height="24" rx="4" fill="#1a1a2e"/>
-        <circle cx="12" cy="12" r="7" fill="none" stroke="#00aacc" stroke-width="1.2"/>
-        <line x1="5" y1="12" x2="19" y2="12" stroke="#00aacc" stroke-width="1"/>
-        <path d="M9 5.5 Q6 12 9 18.5" stroke="#00aacc" stroke-width="1" fill="none"/>
-        <path d="M15 5.5 Q18 12 15 18.5" stroke="#00aacc" stroke-width="1" fill="none"/>
-      </svg>`,
-      label:'EASYEDA', desc:'Wiring Diagram'
-    },
-    {
-      svgInline:`<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <rect width="24" height="24" rx="4" fill="#1565c0"/>
-        <text x="12" y="15" text-anchor="middle" font-size="7.5" font-weight="700" fill="white" font-family="sans-serif">AUTO</text>
-        <text x="12" y="20" text-anchor="middle" font-size="5" fill="#90caf9" font-family="sans-serif">CAD</text>
-      </svg>`,
-      label:'AutoCAD', desc:'Desain Teknik'
-    },
-    {
-      svgInline:`<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <rect width="24" height="24" rx="4" fill="#1a3a5c"/>
-        <path d="M6 18 L10 6 L12 12 L14 8 L18 18" stroke="#3776ab" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
-        <path d="M6 18 L10 6 L12 12 L14 8 L18 18" stroke="#ffd43b" stroke-width="1.2" fill="none" stroke-linejoin="round" stroke-dasharray="3 3"/>
-      </svg>`,
-      label:'Python', desc:'Scripting / AI'
-    },
-    {
-      svgInline:`<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <rect width="24" height="24" rx="4" fill="#1a1a1a"/>
-        <rect x="4" y="8" width="4" height="3" fill="#ff6b35"/>
-        <rect x="10" y="8" width="4" height="3" fill="#ff6b35"/>
-        <rect x="16" y="8" width="4" height="3" fill="#ff6b35"/>
-        <rect x="4" y="13" width="4" height="3" fill="#ff6b35" opacity="0.6"/>
-        <rect x="10" y="13" width="4" height="3" fill="#ff6b35" opacity="0.6"/>
-        <line x1="8" y1="9.5" x2="10" y2="9.5" stroke="#ff6b35" stroke-width="1"/>
-        <line x1="14" y1="9.5" x2="16" y2="9.5" stroke="#ff6b35" stroke-width="1"/>
-      </svg>`,
-      label:'PLC Software', desc:'Ladder Diagram'
-    },
-    {
-      svgInline:`<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <rect width="24" height="24" rx="4" fill="#2b579a"/>
-        <text x="12" y="16" text-anchor="middle" font-size="13" font-weight="700" fill="white" font-family="serif">W</text>
-      </svg>`,
-      label:'MS Word', desc:'Dokumentasi'
+      
     },
   ];
 
